@@ -1,0 +1,31 @@
+
+import React from 'react';
+import { Bell } from 'lucide-react';
+
+const Header = () => {
+  return (
+    <header className="bg-gradient-to-r from-intranet-dark to-intranet w-full py-4 px-6 shadow-md">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center">
+          <h1 className="text-white text-2xl font-bold">Company Intranet</h1>
+        </div>
+        <div className="flex items-center space-x-4">
+          <div className="relative">
+            <Bell className="h-6 w-6 text-white cursor-pointer hover:text-intranet-light transition-colors" />
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              3
+            </span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold">
+              JD
+            </div>
+            <span className="text-white hidden md:inline">John Doe</span>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

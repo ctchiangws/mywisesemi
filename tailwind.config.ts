@@ -53,10 +53,10 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				intranet: {
-					DEFAULT: '#9b87f5',
-					light: '#e5deff',
-					dark: '#6E59A5',
+				wisesemi: {
+					DEFAULT: '#1a237e', // Dark blue from the logo
+					light: '#d6e4ff',
+					dark: '#0d1259',
 					foreground: '#ffffff'
 				}
 			},

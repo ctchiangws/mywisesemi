@@ -31,17 +31,17 @@ const Announcements = () => {
   return (
     <Card className="h-full">
       <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-semibold text-intranet-dark flex items-center">
-          <Megaphone className="h-5 w-5 mr-2 text-intranet" />
+        <CardTitle className="text-lg font-semibold text-wisesemi-dark flex items-center">
+          <Megaphone className="h-5 w-5 mr-2 text-wisesemi" />
           Announcements
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           {announcements.map((announcement) => (
-            <div key={announcement.id} className={`p-3 rounded-lg ${announcement.important ? 'bg-intranet-light border-l-4 border-intranet' : 'bg-gray-50'}`}>
+            <div key={announcement.id} className={`p-3 rounded-lg ${announcement.important ? 'bg-wisesemi-light border-l-4 border-wisesemi' : 'bg-gray-50'}`}>
               <div className="flex justify-between items-start">
-                <h3 className="font-medium text-intranet-dark">{announcement.title}</h3>
+                <h3 className="font-medium text-wisesemi-dark">{announcement.title}</h3>
                 <span className="text-xs text-gray-500">{announcement.date}</span>
               </div>
               <p className="text-sm text-gray-600 mt-1">{announcement.description}</p>

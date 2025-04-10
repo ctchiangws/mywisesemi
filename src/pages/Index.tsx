@@ -2,9 +2,11 @@
 import React from 'react';
 import Header from '@/components/Header';
 import DepartmentsList from '@/components/DepartmentsList';
+import ProjectsList from '@/components/ProjectsList';
 import Announcements from '@/components/Announcements';
 import EventCalendar from '@/components/EventCalendar';
 import SharedDocuments from '@/components/SharedDocuments';
+import TopCalendar from '@/components/TopCalendar';
 
 const Index = () => {
   return (
@@ -13,9 +15,10 @@ const Index = () => {
       
       <main className="flex-1 container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Left Column - Departments */}
-          <div className="h-full">
+          {/* Left Column - Departments & Project Management */}
+          <div className="flex flex-col space-y-6">
             <DepartmentsList />
+            <ProjectsList />
           </div>
           
           {/* Middle Column - Announcements and Calendar */}
@@ -28,15 +31,20 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Right Column - Shared Documents */}
-          <div className="h-full">
-            <SharedDocuments />
+          {/* Right Column - Calendar and Shared Documents */}
+          <div className="flex flex-col space-y-6">
+            <div>
+              <TopCalendar />
+            </div>
+            <div className="flex-1">
+              <SharedDocuments />
+            </div>
           </div>
         </div>
       </main>
       
-      <footer className="bg-intranet-dark text-white p-4 text-center text-sm">
-        <p>© 2025 Company Intranet. All rights reserved.</p>
+      <footer className="bg-wisesemi-dark text-white p-4 text-center text-sm">
+        <p>© 2025 WiseSemi Intranet. All rights reserved.</p>
       </footer>
     </div>
   );

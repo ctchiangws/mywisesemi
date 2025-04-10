@@ -4,14 +4,19 @@ import { Bell } from 'lucide-react';
 
 const Header = () => {
   return (
-    <header className="bg-gradient-to-r from-intranet-dark to-intranet w-full py-4 px-6 shadow-md">
+    <header className="bg-gradient-to-r from-wisesemi-dark to-wisesemi w-full py-4 px-6 shadow-md">
       <div className="flex justify-between items-center">
         <div className="flex items-center">
+          <img 
+            src="/lovable-uploads/1e3c6d26-e204-4ded-b1b2-e4d24e6e00f0.png" 
+            alt="WiseSemi Logo" 
+            className="h-10 mr-3" 
+          />
           <h1 className="text-white text-2xl font-bold">Company Intranet</h1>
         </div>
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <Bell className="h-6 w-6 text-white cursor-pointer hover:text-intranet-light transition-colors" />
+            <Bell className="h-6 w-6 text-white cursor-pointer hover:text-wisesemi-light transition-colors" />
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
               3
             </span>

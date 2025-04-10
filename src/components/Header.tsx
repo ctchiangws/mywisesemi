@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Bell } from 'lucide-react';
+import { Bell, Settings } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -15,6 +16,13 @@ const Header = () => {
           <h1 className="text-white text-2xl font-bold">MyWiseSemi</h1>
         </div>
         <div className="flex items-center space-x-4">
+          <Link 
+            to="/admin" 
+            className="text-white hover:text-wisesemi-light transition-colors"
+            title="Admin"
+          >
+            <Settings className="h-6 w-6" />
+          </Link>
           <div className="relative">
             <Bell className="h-6 w-6 text-white cursor-pointer hover:text-wisesemi-light transition-colors" />
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">

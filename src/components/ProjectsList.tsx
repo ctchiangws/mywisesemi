@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Folder, ChevronDown, ChevronRight } from 'lucide-react';
+import { Folder, ChevronDown, ChevronRight, FileText } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const projects = [
@@ -10,8 +10,15 @@ const projects = [
   { id: 3, name: 'Project_T', path: '/projects/project-t' },
 ];
 
+const isoDocuments = [
+  { id: 1, name: 'ISO 9001 Quality Manual', path: '/projects/iso/quality-manual' },
+  { id: 2, name: 'Process Documentation', path: '/projects/iso/process-docs' },
+  { id: 3, name: 'Audit Procedures', path: '/projects/iso/audit-procedures' },
+];
+
 const ProjectsList = () => {
-  const [expanded, setExpanded] = useState(true);
+  const [expandedProjects, setExpandedProjects] = useState(true);
+  const [expandedISO, setExpandedISO] = useState(true);
 
   return (
     <Card className="h-full">
@@ -22,9 +29,9 @@ const ProjectsList = () => {
         <div className="space-y-2">
           <div 
             className="flex items-center p-2 rounded-md cursor-pointer hover:bg-wisesemi-light transition-colors"
-            onClick={() => setExpanded(!expanded)}
+            onClick={() => setExpandedProjects(!expandedProjects)}
           >
-            {expanded ? (
+            {expandedProjects ? (
               <ChevronDown className="h-4 w-4 mr-2 text-wisesemi-dark" />
             ) : (
               <ChevronRight className="h-4 w-4 mr-2 text-wisesemi-dark" />
@@ -32,7 +39,7 @@ const ProjectsList = () => {
             <span className="font-medium text-wisesemi-dark">Projects</span>
           </div>
           
-          {expanded && (
+          {expandedProjects && (
             <ul className="space-y-1 pl-6">
               {projects.map((project) => (
                 <li key={project.id}>
@@ -43,6 +50,36 @@ const ProjectsList = () => {
                     <Folder className="h-4 w-4 mr-2 text-wisesemi-dark group-hover:text-wisesemi" />
                     <span className="text-gray-700 group-hover:text-wisesemi-dark">
                       {project.name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div 
+            className="flex items-center p-2 rounded-md cursor-pointer hover:bg-wisesemi-light transition-colors mt-4"
+            onClick={() => setExpandedISO(!expandedISO)}
+          >
+            {expandedISO ? (
+              <ChevronDown className="h-4 w-4 mr-2 text-wisesemi-dark" />
+            ) : (
+              <ChevronRight className="h-4 w-4 mr-2 text-wisesemi-dark" />
+            )}
+            <span className="font-medium text-wisesemi-dark">ISO 9001</span>
+          </div>
+          
+          {expandedISO && (
+            <ul className="space-y-1 pl-6">
+              {isoDocuments.map((doc) => (
+                <li key={doc.id}>
+                  <Link
+                    to={doc.path}
+                    className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
+                  >
+                    <FileText className="h-4 w-4 mr-2 text-wisesemi-dark group-hover:text-wisesemi" />
+                    <span className="text-gray-700 group-hover:text-wisesemi-dark">
+                      {doc.name}
                     </span>
                   </Link>
                 </li>

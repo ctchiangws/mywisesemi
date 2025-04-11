@@ -9,7 +9,7 @@ import SharedDocuments from '@/components/SharedDocuments';
 import TopCalendar from '@/components/TopCalendar';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const Index = () => {
+const ChineseIndex = () => {
   const { t } = useLanguage();
   
   return (
@@ -20,26 +20,36 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Left Column - Departments & Project Management */}
           <div className="flex flex-col space-y-6">
-            <DepartmentsList />
-            <ProjectsList />
+            <div className="bg-white p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">部門列表</h2>
+              <DepartmentsList />
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">專案管理</h2>
+              <ProjectsList />
+            </div>
           </div>
           
           {/* Middle Column - Announcements and Calendar */}
           <div className="flex flex-col space-y-6">
-            <div className="flex-1">
+            <div className="flex-1 bg-white p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">公告</h2>
               <Announcements />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 bg-white p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">活動日曆</h2>
               <EventCalendar />
             </div>
           </div>
           
           {/* Right Column - Calendar and Shared Documents */}
           <div className="flex flex-col space-y-6">
-            <div>
+            <div className="bg-white p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">重要日期</h2>
               <TopCalendar />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 bg-white p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">共享文件</h2>
               <SharedDocuments />
             </div>
           </div>
@@ -53,4 +63,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default ChineseIndex;

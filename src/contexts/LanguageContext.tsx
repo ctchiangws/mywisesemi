@@ -25,6 +25,31 @@ const translations: Translations = {
     'en': '© 2025 WiseSemi Intranet. All rights reserved.',
     'zh': '© 2025 明瑞半導體內部網. 版權所有.',
   },
+  // Home page section titles
+  'home.departments': {
+    'en': 'Departments',
+    'zh': '部門列表',
+  },
+  'home.projects': {
+    'en': 'Projects',
+    'zh': '專案管理',
+  },
+  'home.announcements': {
+    'en': 'Announcements',
+    'zh': '公告',
+  },
+  'home.events': {
+    'en': 'Events',
+    'zh': '活動日曆',
+  },
+  'home.important_dates': {
+    'en': 'Important Dates',
+    'zh': '重要日期',
+  },
+  'home.shared_documents': {
+    'en': 'Shared Documents',
+    'zh': '共享文件',
+  },
   // Add more translations as needed
 };
 

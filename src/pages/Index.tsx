@@ -7,6 +7,8 @@ import Announcements from '@/components/Announcements';
 import EventCalendar from '@/components/EventCalendar';
 import SharedDocuments from '@/components/SharedDocuments';
 import TopCalendar from '@/components/TopCalendar';
+import ISODocuments from '@/components/ISODocuments';
+import DailyTools from '@/components/DailyTools';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index = () => {
@@ -18,10 +20,11 @@ const Index = () => {
       
       <main className="flex-1 container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Left Column - Departments & Project Management */}
+          {/* Left Column - Departments, Project Management & ISO 9001 */}
           <div className="flex flex-col space-y-6">
             <DepartmentsList />
             <ProjectsList />
+            <ISODocuments />
           </div>
           
           {/* Middle Column - Announcements and Calendar */}
@@ -34,10 +37,13 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Right Column - Calendar and Shared Documents */}
+          {/* Right Column - Calendar, Daily Tools and Shared Documents */}
           <div className="flex flex-col space-y-6">
             <div>
               <TopCalendar />
+            </div>
+            <div>
+              <DailyTools />
             </div>
             <div className="flex-1">
               <SharedDocuments />

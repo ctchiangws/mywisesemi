@@ -7,6 +7,8 @@ import Announcements from '@/components/Announcements';
 import EventCalendar from '@/components/EventCalendar';
 import SharedDocuments from '@/components/SharedDocuments';
 import TopCalendar from '@/components/TopCalendar';
+import ISODocuments from '@/components/ISODocuments';
+import DailyTools from '@/components/DailyTools';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ChineseIndex = () => {
@@ -18,7 +20,7 @@ const ChineseIndex = () => {
       
       <main className="flex-1 container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Left Column - Departments & Project Management */}
+          {/* Left Column - Departments, Project Management & ISO 9001 */}
           <div className="flex flex-col space-y-6">
             <div className="bg-white p-4 rounded-lg shadow">
               <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">部門列表</h2>
@@ -27,6 +29,10 @@ const ChineseIndex = () => {
             <div className="bg-white p-4 rounded-lg shadow">
               <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">專案管理</h2>
               <ProjectsList />
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">ISO 9001</h2>
+              <ISODocuments />
             </div>
           </div>
           
@@ -42,11 +48,15 @@ const ChineseIndex = () => {
             </div>
           </div>
           
-          {/* Right Column - Calendar and Shared Documents */}
+          {/* Right Column - Calendar, Daily Tools and Shared Documents */}
           <div className="flex flex-col space-y-6">
             <div className="bg-white p-4 rounded-lg shadow">
               <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">重要日期</h2>
               <TopCalendar />
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">日常工具</h2>
+              <DailyTools />
             </div>
             <div className="flex-1 bg-white p-4 rounded-lg shadow">
               <h2 className="text-xl font-semibold text-wisesemi-dark mb-4">共享文件</h2>

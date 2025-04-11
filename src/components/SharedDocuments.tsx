@@ -1,11 +1,12 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, FileSpreadsheet, FileImage, FilePlus, Utensils, FileBox, HelpCircle, UserPlus } from 'lucide-react';
+import { FileText, FileSpreadsheet, FileImage, FilePlus, HelpCircle, UserPlus } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useQuery } from '@tanstack/react-query';
-import { documentsApi, dailyToolsApi } from '@/services/api';
-import { Document, DailyTool } from '@/types';
+import { documentsApi } from '@/services/api';
+import { Document } from '@/types';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const getIcon = (type: string) => {
   switch (type) {
@@ -13,10 +14,6 @@ const getIcon = (type: string) => {
       return <FileSpreadsheet className="h-4 w-4 mr-2 text-green-500" />;
     case 'image':
       return <FileImage className="h-4 w-4 mr-2 text-blue-500" />;
-    case 'lunch':
-      return <Utensils className="h-4 w-4 mr-2 text-orange-500" />;
-    case 'leave':
-      return <FileBox className="h-4 w-4 mr-2 text-wisesemi" />;
     case 'faq':
       return <HelpCircle className="h-4 w-4 mr-2 text-purple-500" />;
     case 'guide':
@@ -27,20 +24,19 @@ const getIcon = (type: string) => {
 };
 
 const SharedDocuments = () => {
-  const { data: documents = [], isLoading: docsLoading } = useQuery({
+  const { t } = useLanguage();
+  
+  const { data: documents = [], isLoading } = useQuery({
     queryKey: ['documents'],
     queryFn: documentsApi.getAll
-  });
-  
-  const { data: dailyTools = [], isLoading: toolsLoading } = useQuery({
-    queryKey: ['dailyTools'],
-    queryFn: dailyToolsApi.getAll
   });
 
   return (
     <Card className="h-full">
       <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-semibold text-wisesemi-dark">Resources</CardTitle>
+        <CardTitle className="text-lg font-semibold text-wisesemi-dark">
+          {t('home.shared_documents')}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="mb-4">
@@ -50,36 +46,9 @@ const SharedDocuments = () => {
           </button>
         </div>
         
-        <div className="mb-4">
-          <h3 className="text-sm font-medium text-wisesemi-dark mb-2">Daily Tools</h3>
-          {toolsLoading ? (
-            <div className="animate-pulse space-y-2">
-              {[1, 2].map(i => (
-                <div key={i} className="h-10 bg-gray-200 rounded-md"></div>
-              ))}
-            </div>
-          ) : (
-            <ul className="space-y-2 mb-4">
-              {dailyTools.map((tool: DailyTool) => (
-                <li key={tool.id}>
-                  <Link
-                    to={tool.path}
-                    className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
-                  >
-                    {getIcon(tool.type)}
-                    <span className="text-gray-700 group-hover:text-wisesemi-dark">
-                      {tool.name}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        
         <div>
           <h3 className="text-sm font-medium text-wisesemi-dark mb-2">Shared Documents</h3>
-          {docsLoading ? (
+          {isLoading ? (
             <div className="animate-pulse space-y-2">
               {[1, 2, 3, 4].map(i => (
                 <div key={i} className="h-10 bg-gray-200 rounded-md"></div>

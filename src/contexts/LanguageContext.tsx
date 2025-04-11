@@ -14,7 +14,7 @@ const translations: Translations = {
   // Header translations
   'intranet': {
     'en': 'MyWiseSemi',
-    'zh': '我的明瑞半導體',
+    'zh': '我的智騰半導體',
   },
   'admin': {
     'en': 'Admin',
@@ -23,7 +23,7 @@ const translations: Translations = {
   // Footer translations
   'footer.copyright': {
     'en': '© 2025 WiseSemi Intranet. All rights reserved.',
-    'zh': '© 2025 明瑞半導體內部網. 版權所有.',
+    'zh': '© 2025 智騰半導體內部網. 版權所有.',
   },
   // Home page section titles
   'home.departments': {
@@ -49,6 +49,14 @@ const translations: Translations = {
   'home.shared_documents': {
     'en': 'Shared Documents',
     'zh': '共享文件',
+  },
+  'home.iso': {
+    'en': 'ISO 9001',
+    'zh': 'ISO 9001',
+  },
+  'home.daily_tools': {
+    'en': 'Daily Tools',
+    'zh': '日常工具',
   },
   // Add more translations as needed
 };

@@ -2,8 +2,12 @@
 import React from 'react';
 import { Bell, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSelector from '@/components/LanguageSelector';
 
 const Header = () => {
+  const { t } = useLanguage();
+  
   return (
     <header className="bg-gradient-to-r from-wisesemi-dark to-wisesemi w-full py-4 px-6 shadow-md">
       <div className="flex justify-between items-center">
@@ -13,13 +17,14 @@ const Header = () => {
             alt="WiseSemi Logo" 
             className="h-10 mr-3" 
           />
-          <h1 className="text-white text-2xl font-bold">MyWiseSemi</h1>
+          <h1 className="text-white text-2xl font-bold">{t('intranet')}</h1>
         </div>
         <div className="flex items-center space-x-4">
+          <LanguageSelector />
           <Link 
             to="/admin" 
             className="text-white hover:text-wisesemi-light transition-colors"
-            title="Admin"
+            title={t('admin')}
           >
             <Settings className="h-6 w-6" />
           </Link>

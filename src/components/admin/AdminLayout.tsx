@@ -1,12 +1,15 @@
 
 import React, { ReactNode } from 'react';
 import Header from '@/components/Header';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface AdminLayoutProps {
   children: ReactNode;
 }
 
 const AdminLayout = ({ children }: AdminLayoutProps) => {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
@@ -16,7 +19,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
       </main>
       
       <footer className="bg-wisesemi-dark text-white p-4 text-center text-sm">
-        <p>© 2025 WiseSemi Intranet. All rights reserved.</p>
+        <p>{t('footer.copyright')}</p>
       </footer>
     </div>
   );

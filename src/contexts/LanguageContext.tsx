@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'en' | 'zh';
@@ -14,7 +13,7 @@ const translations: Translations = {
   // Header translations
   'intranet': {
     'en': 'MyWiseSemi',
-    'zh': '我的智騰半導體',
+    'zh': '智騰圈',
   },
   'admin': {
     'en': 'Admin',

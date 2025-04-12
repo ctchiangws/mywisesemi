@@ -11,14 +11,14 @@ const Header = () => {
   return (
     <header className="bg-gradient-to-r from-wisesemi-dark to-wisesemi w-full py-4 px-6 shadow-md">
       <div className="flex justify-between items-center">
-        <div className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img 
             src="/lovable-uploads/1e3c6d26-e204-4ded-b1b2-e4d24e6e00f0.png" 
             alt="WiseSemi Logo" 
             className="h-10 mr-3" 
           />
           <h1 className="text-white text-2xl font-bold">{t('intranet')}</h1>
-        </div>
+        </Link>
         <div className="flex items-center space-x-4">
           <LanguageSelector />
           <Link 

@@ -159,12 +159,13 @@ const EventEditor = ({
             />
           </div>
 
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-6">
             {selectedEvent !== 'new' && (
               <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
                 <AlertDialogTrigger asChild>
                   <Button 
                     variant="destructive"
+                    className="flex items-center"
                     disabled={deleteEventMutation.isPending}
                   >
                     <Trash2 className="mr-2 h-4 w-4" />
@@ -188,6 +189,7 @@ const EventEditor = ({
                 </AlertDialogContent>
               </AlertDialog>
             )}
+            {selectedEvent === 'new' && <div />}
             <Button 
               onClick={handleSaveEvent} 
               className="bg-wisesemi hover:bg-wisesemi-dark"

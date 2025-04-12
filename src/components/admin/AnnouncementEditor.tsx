@@ -161,12 +161,13 @@ const AnnouncementEditor = ({
             </div>
           </div>
 
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-6">
             {selectedAnnouncement !== 'new' && (
               <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
                 <AlertDialogTrigger asChild>
                   <Button 
                     variant="destructive"
+                    className="flex items-center"
                     disabled={deleteAnnouncementMutation.isPending}
                   >
                     <Trash2 className="mr-2 h-4 w-4" />
@@ -190,6 +191,7 @@ const AnnouncementEditor = ({
                 </AlertDialogContent>
               </AlertDialog>
             )}
+            {selectedAnnouncement === 'new' && <div />}
             <Button 
               onClick={handleSaveAnnouncement} 
               className="bg-wisesemi hover:bg-wisesemi-dark"

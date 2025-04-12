@@ -1,7 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from '@/components/ui/navigation-menu';
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { FileText } from 'lucide-react';
 
@@ -30,39 +35,36 @@ const DocumentNavigation = ({
         <CardTitle className="text-lg">Navigation</CardTitle>
       </CardHeader>
       <CardContent>
-        <NavigationMenu orientation="vertical" className="max-w-none w-full">
-          <NavigationMenuList className="flex flex-col space-y-2 w-full">
-            {documentCategories.map((category) => (
-              <NavigationMenuItem key={category.name} className="w-full">
-                <NavigationMenuTrigger 
-                  className={`w-full justify-start ${selectedCategory === category.name ? 'bg-wisesemi text-white' : ''}`}
-                  onClick={() => handleCategoryChange(category.name)}
-                >
-                  {category.name}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="w-full">
-                  <ul className="grid w-[200px] gap-1 p-2">
-                    {category.documents.map((doc) => (
-                      <li key={doc.id}>
-                        <Button
-                          variant="ghost"
-                          className="w-full justify-start"
-                          onClick={() => {
-                            handleCategoryChange(category.name);
-                            handleDocumentChange(doc.id);
-                          }}
-                        >
-                          <FileText className="mr-2 h-4 w-4" />
-                          {doc.name}
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <Accordion type="multiple" className="w-full">
+          {documentCategories.map((category) => (
+            <AccordionItem key={category.name} value={category.name}>
+              <AccordionTrigger 
+                className={`py-2 ${selectedCategory === category.name ? 'text-wisesemi font-medium' : ''}`}
+                onClick={() => handleCategoryChange(category.name)}
+              >
+                {category.name}
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="pl-2 space-y-1">
+                  {category.documents.map((doc) => (
+                    <Button
+                      key={doc.id}
+                      variant="ghost"
+                      className="w-full justify-start h-auto py-1.5"
+                      onClick={() => {
+                        handleCategoryChange(category.name);
+                        handleDocumentChange(doc.id);
+                      }}
+                    >
+                      <FileText className="mr-2 h-4 w-4" />
+                      <span className="text-sm">{doc.name}</span>
+                    </Button>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </CardContent>
     </Card>
   );

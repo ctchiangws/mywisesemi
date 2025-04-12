@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Save } from 'lucide-react';
+import { Save, Trash2 } from 'lucide-react';
 import { Announcement } from '@/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { announcementsApi } from '@/services/api';
@@ -60,6 +60,17 @@ const AnnouncementEditor = ({
     }
   });
 
+  const deleteAnnouncementMutation = useMutation({
+    mutationFn: (id: number) => announcementsApi.delete(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['announcements'] });
+      toast({
+        title: "Announcement deleted",
+        description: `The announcement has been successfully deleted`,
+      });
+    }
+  });
+
   const handleSaveAnnouncement = () => {
     const announcementData = {
       title: announcementTitle,
@@ -76,6 +87,13 @@ const AnnouncementEditor = ({
         id: announcementId, 
         data: announcementData 
       });
+    }
+  };
+
+  const handleDeleteAnnouncement = () => {
+    if (selectedAnnouncement !== 'new') {
+      const announcementId = parseInt(selectedAnnouncement);
+      deleteAnnouncementMutation.mutate(announcementId);
     }
   };
 
@@ -131,7 +149,17 @@ const AnnouncementEditor = ({
             </div>
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-between">
+            {selectedAnnouncement !== 'new' && (
+              <Button 
+                onClick={handleDeleteAnnouncement} 
+                variant="destructive"
+                disabled={deleteAnnouncementMutation.isPending}
+              >
+                <Trash2 className="mr-2 h-4 w-4" />
+                {deleteAnnouncementMutation.isPending ? 'Deleting...' : 'Delete Announcement'}
+              </Button>
+            )}
             <Button 
               onClick={handleSaveAnnouncement} 
               className="bg-wisesemi hover:bg-wisesemi-dark"

@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Save } from 'lucide-react';
+import { Save, Trash2 } from 'lucide-react';
 import { Event } from '@/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { eventsApi } from '@/services/api';
@@ -59,6 +59,17 @@ const EventEditor = ({
     }
   });
 
+  const deleteEventMutation = useMutation({
+    mutationFn: (id: number) => eventsApi.delete(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['events'] });
+      toast({
+        title: "Event deleted",
+        description: `The event has been successfully deleted`,
+      });
+    }
+  });
+
   const handleSaveEvent = () => {
     const eventData = {
       title: eventTitle,
@@ -75,6 +86,13 @@ const EventEditor = ({
         id: eventId, 
         data: eventData 
       });
+    }
+  };
+
+  const handleDeleteEvent = () => {
+    if (selectedEvent !== 'new') {
+      const eventId = parseInt(selectedEvent);
+      deleteEventMutation.mutate(eventId);
     }
   };
 
@@ -129,7 +147,17 @@ const EventEditor = ({
             />
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-between">
+            {selectedEvent !== 'new' && (
+              <Button 
+                onClick={handleDeleteEvent} 
+                variant="destructive"
+                disabled={deleteEventMutation.isPending}
+              >
+                <Trash2 className="mr-2 h-4 w-4" />
+                {deleteEventMutation.isPending ? 'Deleting...' : 'Delete Event'}
+              </Button>
+            )}
             <Button 
               onClick={handleSaveEvent} 
               className="bg-wisesemi hover:bg-wisesemi-dark"

@@ -9,23 +9,28 @@
 ## 智騰半導體 2025 股東會
 **Date: June 30, 2025**
 **Time: 10:00 AM**
-**Location: Conference Room A**
+**Location: New Conference Room**
 
 Important meeting to discuss the upcoming product launch strategy and timeline.
 
-## 智騰半導體 首次員工教育訓練Team Building Event
-**Date: April 15, 2025**
-**Time: 2:00 PM**
-**Location: Central Park**
+## 2025 Q2季會與慶生會
+**Date: May 30, 2025**
+**Time: 12:00 PM**
+**Location: 八庵日本料理文興旗艦店**
 
 Annual team building activities to strengthen collaboration and team spirit.
 
-## 智騰半導體 首次員工教育訓練Fiscal Year Planning
-**Date: April 20, 2025**
-**Time: 9:00 AM**
-**Location: Board Room**
+## 2025 Q1季會與慶生會
+**Date: March 20, 2025**
+**Time: 18:00 AM**
+**Location: 開飯川食堂**
 
 Strategic planning session for the upcoming fiscal year budget and objectives.
+
+## 2025 年終尾牙
+**Date: Jan 20, 2025**
+**Time: 18:00 AM**
+**Location: 牛排**
 
 ## 智騰半導體 首次員工教育訓練
 **Date: Jan 07, 2025**

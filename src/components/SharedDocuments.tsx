@@ -23,6 +23,10 @@ const getIcon = (type: string) => {
   }
 };
 
+const isExternalLink = (path: string) => {
+  return path.startsWith('http://') || path.startsWith('https://');
+};
+
 const SharedDocuments = () => {
   const { t } = useLanguage();
   
@@ -49,15 +53,29 @@ const SharedDocuments = () => {
           <ul className="space-y-2">
             {documents.map((document: Document) => (
               <li key={document.id}>
-                <Link
-                  to={document.path}
-                  className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
-                >
-                  {getIcon(document.type)}
-                  <span className="text-gray-700 group-hover:text-wisesemi-dark">
-                    {document.name}
-                  </span>
-                </Link>
+                {isExternalLink(document.path) ? (
+                  <a
+                    href={document.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
+                  >
+                    {getIcon(document.type)}
+                    <span className="text-gray-700 group-hover:text-wisesemi-dark">
+                      {document.name}
+                    </span>
+                  </a>
+                ) : (
+                  <Link
+                    to={document.path}
+                    className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
+                  >
+                    {getIcon(document.type)}
+                    <span className="text-gray-700 group-hover:text-wisesemi-dark">
+                      {document.name}
+                    </span>
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

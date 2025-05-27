@@ -17,6 +17,11 @@ const DepartmentsList = () => {
   });
 
   const getDepartmentName = (dept: Department) => {
+    // Special case for QA department to display "QA" instead of "Quality Management"
+    if (dept.name === 'QA') {
+      return 'QA';
+    }
+    
     // For external links, use the department name directly
     if (isExternalLink(dept.path)) {
       const translationKey = `dept.${dept.name.toLowerCase()}`;

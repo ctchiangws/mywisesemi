@@ -1,34 +1,36 @@
+
 import { Department, Document, Announcement, Event, Project } from '@/types';
 
 const departmentsData: Department[] = [
-  { id: '1', name: 'CEO Office', path: '/departments/ceo-office' },
-  { id: '2', name: 'Human Resources', path: '/departments/hr' },
-  { id: '3', name: 'Finance', path: '/departments/finance' },
-  { id: '4', name: 'Marketing', path: '/departments/marketing' },
-  { id: '5', name: 'RD1', path: '/departments/rd1' },
-  { id: '6', name: 'RD2', path: '/departments/rd2' },
-  { id: '7', name: 'Customer Support', path: '/departments/support' },
-  { id: '8', name: 'Sales', path: '/departments/sales' },
-  { id: '9', name: 'Operations', path: '/departments/operations' },
-  { id: '10', name: 'ITCAD', path: '/departments/itcad' },
-  { id: '11', name: 'Quality Management', path: 'https://example.com/quality' },
+  { id: 1, name: 'CEO Office', path: '/departments/ceo-office' },
+  { id: 2, name: 'Human Resources', path: '/departments/hr' },
+  { id: 3, name: 'Finance', path: '/departments/finance' },
+  { id: 4, name: 'Marketing', path: '/departments/marketing' },
+  { id: 5, name: 'RD1', path: '/departments/rd1' },
+  { id: 6, name: 'RD2', path: '/departments/rd2' },
+  { id: 7, name: 'Customer Support', path: '/departments/support' },
+  { id: 8, name: 'Sales', path: '/departments/sales' },
+  { id: 9, name: 'Operations', path: '/departments/operations' },
+  { id: 10, name: 'ITCAD', path: 'http://mywisesemi.cad.wisesemi.com' },
+  { id: 11, name: 'QA', path: 'http://mywisesemi.qa.wisesemi.com' },
 ];
 
 const documentsData: Document[] = [
-  { id: '1', name: 'Q1 Financial Report', type: 'spreadsheet', path: '/documents/financial-report' },
-  { id: '2', name: 'Brand Guidelines 2025', type: 'document', path: '/documents/brand-guidelines' },
-  { id: '3', name: 'Employee Handbook', type: 'document', path: '/documents/employee-handbook' },
-  { id: '4', name: 'Product Roadmap', type: 'document', path: '/documents/product-roadmap' },
-  { id: '5', name: 'Marketing Assets', type: 'image', path: '/documents/marketing-assets' },
-  { id: '6', name: 'Project Proposal Template', type: 'document', path: '/documents/project-template' },
-  { id: '7', name: 'IT FAQ', type: 'faq', path: '/documents/it-faq' },
-  { id: '8', name: 'New Employee Guide', type: 'guide', path: '/documents/new-employee-guide' },
+  { id: 1, name: 'Q1 Financial Report', type: 'spreadsheet', path: '/documents/financial-report' },
+  { id: 2, name: 'Brand Guidelines 2025', type: 'document', path: '/documents/brand-guidelines' },
+  { id: 3, name: 'Employee Handbook', type: 'document', path: '/documents/employee-handbook' },
+  { id: 4, name: 'Product Roadmap', type: 'document', path: '/documents/product-roadmap' },
+  { id: 5, name: 'Marketing Assets', type: 'image', path: '/documents/marketing-assets' },
+  { id: 6, name: 'Project Proposal Template', type: 'document', path: '/documents/project-template' },
+  { id: 7, name: 'IT FAQ', type: 'faq', path: 'http://mywisesemi.it.wisesemi.com' },
+  { id: 8, name: 'New Employee Guide', type: 'guide', path: '/documents/new-employee-guide' },
+  { id: 9, name: 'Life in WiseSemi', type: 'document', path: 'http://mywisesemi.life.wisesemi.com' },
 ];
 
 const projectsData: Project[] = [
-  { id: '1', name: 'Project Alpha', description: 'Developing new AI solution', status: 'In Progress' },
-  { id: '2', name: 'Project Beta', description: 'Enhancing customer service platform', status: 'Completed' },
-  { id: '3', name: 'Project Gamma', description: 'Upgrading IT infrastructure', status: 'Planning' },
+  { id: 1, name: 'Project Alpha', description: 'Developing new AI solution', status: 'In Progress' },
+  { id: 2, name: 'Project Beta', description: 'Enhancing customer service platform', status: 'Completed' },
+  { id: 3, name: 'Project Gamma', description: 'Upgrading IT infrastructure', status: 'Planning' },
 ];
 
 import { announcementsService } from './announcementsService';
@@ -106,8 +108,8 @@ export const announcementsApi = {
     await new Promise(resolve => setTimeout(resolve, 500));
     
     const parsed = announcementsService.parseMarkdown(announcementsContent);
-    return parsed.map(item => ({
-      id: item.id,
+    return parsed.map((item, index) => ({
+      id: index + 1,
       title: item.title,
       description: item.description,
       date: item.date,
@@ -122,8 +124,8 @@ export const eventsApi = {
     await new Promise(resolve => setTimeout(resolve, 500));
     
     const parsed = eventsService.parseMarkdown(eventsContent);
-    return parsed.map(item => ({
-      id: item.id,
+    return parsed.map((item, index) => ({
+      id: index + 1,
       title: item.title,
       date: item.date,
       time: item.time,

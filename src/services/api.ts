@@ -1,180 +1,141 @@
+import { Department, Document, Announcement, Event, Project } from '@/types';
 
-import { 
-  departments, 
-  projects, 
-  isoDocuments, 
-  announcements, 
-  events, 
-  documents, 
-  dailyTools 
-} from '../data/mockData';
-import { Department, Project, ISODocument, Announcement, Event, Document, DailyTool } from '../types';
+const departmentsData: Department[] = [
+  { id: '1', name: 'CEO Office', path: '/departments/ceo-office' },
+  { id: '2', name: 'Human Resources', path: '/departments/hr' },
+  { id: '3', name: 'Finance', path: '/departments/finance' },
+  { id: '4', name: 'Marketing', path: '/departments/marketing' },
+  { id: '5', name: 'RD1', path: '/departments/rd1' },
+  { id: '6', name: 'RD2', path: '/departments/rd2' },
+  { id: '7', name: 'Customer Support', path: '/departments/support' },
+  { id: '8', name: 'Sales', path: '/departments/sales' },
+  { id: '9', name: 'Operations', path: '/departments/operations' },
+  { id: '10', name: 'ITCAD', path: '/departments/itcad' },
+  { id: '11', name: 'Quality Management', path: 'https://example.com/quality' },
+];
 
-// Simulate API delay for a more realistic experience
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const documentsData: Document[] = [
+  { id: '1', name: 'Q1 Financial Report', type: 'spreadsheet', path: '/documents/financial-report' },
+  { id: '2', name: 'Brand Guidelines 2025', type: 'document', path: '/documents/brand-guidelines' },
+  { id: '3', name: 'Employee Handbook', type: 'document', path: '/documents/employee-handbook' },
+  { id: '4', name: 'Product Roadmap', type: 'document', path: '/documents/product-roadmap' },
+  { id: '5', name: 'Marketing Assets', type: 'image', path: '/documents/marketing-assets' },
+  { id: '6', name: 'Project Proposal Template', type: 'document', path: '/documents/project-template' },
+  { id: '7', name: 'IT FAQ', type: 'faq', path: '/documents/it-faq' },
+  { id: '8', name: 'New Employee Guide', type: 'guide', path: '/documents/new-employee-guide' },
+];
 
-// Generic error for simulating API failures
-class ApiError extends Error {
-  status: number;
-  
-  constructor(message: string, status: number = 500) {
-    super(message);
-    this.name = 'ApiError';
-    this.status = status;
-  }
-}
+const projectsData: Project[] = [
+  { id: '1', name: 'Project Alpha', description: 'Developing new AI solution', status: 'In Progress' },
+  { id: '2', name: 'Project Beta', description: 'Enhancing customer service platform', status: 'Completed' },
+  { id: '3', name: 'Project Gamma', description: 'Upgrading IT infrastructure', status: 'Planning' },
+];
 
-// Departments API
+import { announcementsService } from './announcementsService';
+import { eventsService } from './eventsService';
+
+// Import the markdown content directly
+const announcementsContent = `
+# Company Announcements
+
+## New Company Policy Update
+**Date: 2025-04-05 | Important**
+
+Please review the updated remote work policy before the end of the month. The new policy includes flexible working arrangements and updated guidelines for hybrid work schedules.
+
+## Quarterly All-Hands Meeting
+**Date: 2025-04-15 | Important**
+
+Join us for our Q2 all-hands meeting next Friday at 2pm in the main conference room. We'll be discussing company performance, upcoming projects, and strategic initiatives.
+
+## IT System Maintenance
+**Date: 2025-04-12**
+
+The IT systems will be down for maintenance this Saturday from 10pm to 2am. Please save your work and log out before the maintenance window begins.
+`;
+
+const eventsContent = `
+# Upcoming Events
+
+## 智騰半導體 首次員工旅遊
+**Date: Sep. 13/14, 2025**
+**Time: ALL DAY**
+**Location: 雲品 日月潭**
+
+## 智騰半導體 2025 股東會
+**Date: June 30, 2025**
+**Time: 10:00 AM**
+**Location: Conference Room A**
+
+Important meeting to discuss the upcoming product launch strategy and timeline.
+
+## 智騰半導體 首次員工教育訓練Team Building Event
+**Date: April 15, 2025**
+**Time: 2:00 PM**
+**Location: Central Park**
+
+Annual team building activities to strengthen collaboration and team spirit.
+
+## 智騰半導體 首次員工教育訓練
+**Date: Jan 07, 2025**
+**Time: 13:00 AM**
+**Location: 肯沃商務中心 Training Center**
+
+Professional development workshop on new technologies and best practices.
+`;
+
 export const departmentsApi = {
   getAll: async (): Promise<Department[]> => {
-    await delay(300); // Simulate network delay
-    return [...departments];
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    return departmentsData;
   },
-  
-  getById: async (id: number): Promise<Department | null> => {
-    await delay(200);
-    const department = departments.find(d => d.id === id);
-    if (!department) return null;
-    return { ...department };
-  }
 };
 
-// Projects API
-export const projectsApi = {
-  getAll: async (): Promise<Project[]> => {
-    await delay(300);
-    return [...projects];
-  },
-  
-  getById: async (id: number): Promise<Project | null> => {
-    await delay(200);
-    const project = projects.find(p => p.id === id);
-    if (!project) return null;
-    return { ...project };
-  }
-};
-
-// ISO Documents API
-export const isoDocumentsApi = {
-  getAll: async (): Promise<ISODocument[]> => {
-    await delay(300);
-    return [...isoDocuments];
-  },
-  
-  getById: async (id: number): Promise<ISODocument | null> => {
-    await delay(200);
-    const doc = isoDocuments.find(d => d.id === id);
-    if (!doc) return null;
-    return { ...doc };
-  }
-};
-
-// Announcements API
-export const announcementsApi = {
-  getAll: async (): Promise<Announcement[]> => {
-    await delay(400);
-    return [...announcements];
-  },
-  
-  getById: async (id: number): Promise<Announcement | null> => {
-    await delay(200);
-    const announcement = announcements.find(a => a.id === id);
-    if (!announcement) return null;
-    return { ...announcement };
-  },
-  
-  create: async (announcement: Omit<Announcement, 'id'>): Promise<Announcement> => {
-    await delay(500);
-    const newId = Math.max(...announcements.map(a => a.id), 0) + 1;
-    const newAnnouncement = { id: newId, ...announcement };
-    announcements.push(newAnnouncement);
-    return { ...newAnnouncement };
-  },
-  
-  update: async (id: number, data: Partial<Announcement>): Promise<Announcement> => {
-    await delay(500);
-    const index = announcements.findIndex(a => a.id === id);
-    if (index === -1) throw new ApiError('Announcement not found', 404);
-    
-    announcements[index] = { ...announcements[index], ...data };
-    return { ...announcements[index] };
-  },
-  
-  delete: async (id: number): Promise<void> => {
-    await delay(500);
-    const index = announcements.findIndex(a => a.id === id);
-    if (index === -1) throw new ApiError('Announcement not found', 404);
-    
-    announcements.splice(index, 1);
-  }
-};
-
-// Events API
-export const eventsApi = {
-  getAll: async (): Promise<Event[]> => {
-    await delay(400);
-    return [...events];
-  },
-  
-  getById: async (id: number): Promise<Event | null> => {
-    await delay(200);
-    const event = events.find(e => e.id === id);
-    if (!event) return null;
-    return { ...event };
-  },
-  
-  create: async (event: Omit<Event, 'id'>): Promise<Event> => {
-    await delay(500);
-    const newId = Math.max(...events.map(e => e.id), 0) + 1;
-    const newEvent = { id: newId, ...event };
-    events.push(newEvent);
-    return { ...newEvent };
-  },
-  
-  update: async (id: number, data: Partial<Event>): Promise<Event> => {
-    await delay(500);
-    const index = events.findIndex(e => e.id === id);
-    if (index === -1) throw new ApiError('Event not found', 404);
-    
-    events[index] = { ...events[index], ...data };
-    return { ...events[index] };
-  },
-  
-  delete: async (id: number): Promise<void> => {
-    await delay(500);
-    const index = events.findIndex(e => e.id === id);
-    if (index === -1) throw new ApiError('Event not found', 404);
-    
-    events.splice(index, 1);
-  }
-};
-
-// Documents API
 export const documentsApi = {
   getAll: async (): Promise<Document[]> => {
-    await delay(400);
-    return [...documents];
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    return documentsData;
   },
-  
-  getById: async (id: number): Promise<Document | null> => {
-    await delay(200);
-    const document = documents.find(d => d.id === id);
-    if (!document) return null;
-    return { ...document };
+};
+
+export const announcementsApi = {
+  getAll: async (): Promise<Announcement[]> => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    const parsed = announcementsService.parseMarkdown(announcementsContent);
+    return parsed.map(item => ({
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      date: item.date,
+      important: item.important
+    }));
   }
 };
 
-// Daily Tools API
-export const dailyToolsApi = {
-  getAll: async (): Promise<DailyTool[]> => {
-    await delay(300);
-    return [...dailyTools];
-  },
-  
-  getById: async (id: number): Promise<DailyTool | null> => {
-    await delay(200);
-    const tool = dailyTools.find(t => t.id === id);
-    if (!tool) return null;
-    return { ...tool };
+export const eventsApi = {
+  getAll: async (): Promise<Event[]> => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    const parsed = eventsService.parseMarkdown(eventsContent);
+    return parsed.map(item => ({
+      id: item.id,
+      title: item.title,
+      date: item.date,
+      time: item.time,
+      location: item.location
+    }));
   }
+};
+
+export const projectsApi = {
+  getAll: async (): Promise<Project[]> => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    return projectsData;
+  },
 };

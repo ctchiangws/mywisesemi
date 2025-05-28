@@ -55,7 +55,10 @@ export const announcementsApi = {
     await new Promise(resolve => setTimeout(resolve, 500));
     
     try {
-      const response = await fetch('/src/data/content/announcements.md');
+      const response = await fetch('/data/announcements.md');
+      if (!response.ok) {
+        throw new Error('Failed to fetch announcements');
+      }
       const content = await response.text();
       const parsed = announcementsService.parseMarkdown(content);
       return parsed.map((item, index) => ({
@@ -95,7 +98,10 @@ export const eventsApi = {
     await new Promise(resolve => setTimeout(resolve, 500));
     
     try {
-      const response = await fetch('/src/data/content/events.md');
+      const response = await fetch('/data/events.md');
+      if (!response.ok) {
+        throw new Error('Failed to fetch events');
+      }
       const content = await response.text();
       const parsed = eventsService.parseMarkdown(content);
       return parsed.map((item, index) => ({

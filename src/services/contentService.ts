@@ -17,7 +17,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Admin',
-    path: '/src/data/content/departments/ceo-office.md'
+    path: '/data/departments/ceo-office.md'
   },
   'hr': {
     id: 'hr',
@@ -25,7 +25,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Jane Smith',
-    path: '/src/data/content/departments/hr.md'
+    path: '/data/departments/hr.md'
   },
   'finance': {
     id: 'finance',
@@ -33,7 +33,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Robert Thompson',
-    path: '/src/data/content/departments/finance.md'
+    path: '/data/departments/finance.md'
   },
   'marketing': {
     id: 'marketing',
@@ -41,7 +41,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Jessica Brown',
-    path: '/src/data/content/departments/marketing.md'
+    path: '/data/departments/marketing.md'
   },
   'rd1': {
     id: 'rd1',
@@ -49,7 +49,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Alex Chen',
-    path: '/src/data/content/departments/rd1.md'
+    path: '/data/departments/rd1.md'
   },
   'rd2': {
     id: 'rd2',
@@ -57,7 +57,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Samantha Wong',
-    path: '/src/data/content/departments/rd2.md'
+    path: '/data/departments/rd2.md'
   },
   'support': {
     id: 'support',
@@ -65,7 +65,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Brian Johnson',
-    path: '/src/data/content/departments/support.md'
+    path: '/data/departments/support.md'
   },
   'sales': {
     id: 'sales',
@@ -73,7 +73,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Thomas Wilson',
-    path: '/src/data/content/departments/sales.md'
+    path: '/data/departments/sales.md'
   },
   'operations': {
     id: 'operations',
@@ -81,7 +81,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'Matthew Robinson',
-    path: '/src/data/content/departments/operations.md'
+    path: '/data/departments/operations.md'
   },
   'itcad': {
     id: 'itcad',
@@ -89,7 +89,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'department',
     lastUpdated: '2025-04-01',
     author: 'IT Department',
-    path: '/src/data/content/departments/itcad.md'
+    path: '/data/departments/itcad.md'
   },
   // ISO Documents
   'quality-manual': {
@@ -98,7 +98,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'iso',
     lastUpdated: '2025-04-01',
     author: 'Quality Team',
-    path: '/src/data/content/iso/quality-manual.md'
+    path: '/data/iso/quality-manual.md'
   },
   'process-docs': {
     id: 'process-docs',
@@ -106,7 +106,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'iso',
     lastUpdated: '2025-04-01',
     author: 'Quality Team',
-    path: '/src/data/content/iso/process-docs.md'
+    path: '/data/iso/process-docs.md'
   },
   'audit-procedures': {
     id: 'audit-procedures',
@@ -114,7 +114,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'iso',
     lastUpdated: '2025-04-01',
     author: 'Quality Team',
-    path: '/src/data/content/iso/audit-procedures.md'
+    path: '/data/iso/audit-procedures.md'
   },
   // Announcements
   'announcements': {
@@ -123,7 +123,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'announcement',
     lastUpdated: '2025-04-01',
     author: 'HR Department',
-    path: '/src/data/content/announcements.md'
+    path: '/data/announcements.md'
   },
   // Events
   'events': {
@@ -132,7 +132,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'event',
     lastUpdated: '2025-04-01',
     author: 'Event Coordinator',
-    path: '/src/data/content/events.md'
+    path: '/data/events.md'
   }
 };
 
@@ -140,7 +140,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
 export const contentService = {
   async getContent(contentId: string): Promise<string> {
     try {
-      const response = await fetch(`/src/data/content/${contentId}.md`);
+      const response = await fetch(`/data/${contentId}.md`);
       if (!response.ok) {
         throw new Error(`Failed to load content: ${contentId}`);
       }

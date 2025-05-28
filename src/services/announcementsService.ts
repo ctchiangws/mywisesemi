@@ -14,6 +14,7 @@ export const announcementsService = {
     
     let currentAnnouncement: Partial<ParsedAnnouncement> = {};
     let id = 1;
+    let collectingDescription = false;
     
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
@@ -24,7 +25,7 @@ export const announcementsService = {
           announcements.push({
             id: String(id++),
             title: currentAnnouncement.title || '',
-            description: currentAnnouncement.description || '',
+            description: (currentAnnouncement.description || '').trim(),
             date: currentAnnouncement.date || '',
             important: currentAnnouncement.important || false
           });
@@ -32,21 +33,22 @@ export const announcementsService = {
         
         // Start new announcement
         currentAnnouncement = {
-          title: line.substring(3).trim()
+          title: line.substring(3).trim(),
+          description: ''
         };
-      } else if (line.startsWith('**Date:') && line.includes('|')) {
-        const parts = line.split('|');
-        const datePart = parts[0].replace('**Date:', '').replace('**', '').trim();
-        const importantPart = parts[1] ? parts[1].trim() : '';
-        
-        currentAnnouncement.date = datePart;
-        currentAnnouncement.important = importantPart.toLowerCase().includes('important');
+        collectingDescription = false;
       } else if (line.startsWith('**Date:')) {
         const datePart = line.replace('**Date:', '').replace('**', '').trim();
         currentAnnouncement.date = datePart;
         currentAnnouncement.important = false;
-      } else if (line && !line.startsWith('#') && !line.startsWith('**Date:') && currentAnnouncement.title) {
-        currentAnnouncement.description = (currentAnnouncement.description || '') + ' ' + line;
+        collectingDescription = true;
+      } else if (line && !line.startsWith('#') && collectingDescription && currentAnnouncement.title) {
+        // Collect description lines
+        if (currentAnnouncement.description) {
+          currentAnnouncement.description += ' ' + line;
+        } else {
+          currentAnnouncement.description = line;
+        }
       }
     }
     
@@ -55,7 +57,7 @@ export const announcementsService = {
       announcements.push({
         id: String(id++),
         title: currentAnnouncement.title || '',
-        description: currentAnnouncement.description?.trim() || '',
+        description: (currentAnnouncement.description || '').trim(),
         date: currentAnnouncement.date || '',
         important: currentAnnouncement.important || false
       });

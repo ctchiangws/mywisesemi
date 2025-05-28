@@ -14,12 +14,6 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Home route component that redirects based on language
-const HomeRoute = () => {
-  const { language } = useLanguage();
-  return language === 'zh' ? <ChineseIndex /> : <Index />;
-};
-
 const App = () => (
   <BrowserRouter>
     <LanguageProvider>
@@ -28,7 +22,8 @@ const App = () => (
           <Toaster />
           <Sonner />
           <Routes>
-            <Route path="/" element={<HomeRoute />} />
+            <Route path="/" element={<ChineseIndex />} />
+            <Route path="/en" element={<Index />} />
             <Route path="/departments/:deptId" element={<DepartmentPage />} />
             <Route path="/documents/:docId" element={<DocumentPage />} />
             <Route path="/projects/:projectId" element={<DepartmentPage />} />

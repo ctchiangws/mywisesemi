@@ -63,9 +63,13 @@ export const eventsService = {
       return '2025-09-13';
     } else if (dateStr.includes('June')) {
       return '2025-06-30';
-    } else if (dateStr.includes('April')) {
-      return '2025-04-15';
-    } else if (dateStr.includes('Jan')) {
+    } else if (dateStr.includes('May')) {
+      return '2025-05-30';
+    } else if (dateStr.includes('March')) {
+      return '2025-03-20';
+    } else if (dateStr.includes('Jan') && dateStr.includes('20')) {
+      return '2025-01-20';
+    } else if (dateStr.includes('Jan') && dateStr.includes('07')) {
       return '2025-01-07';
     }
     return dateStr;

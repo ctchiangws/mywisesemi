@@ -28,67 +28,16 @@ const documentsData: Document[] = [
 ];
 
 const projectsData: Project[] = [
-  { id: 1, name: 'Project Alpha', description: 'Developing new AI solution', status: 'In Progress' },
-  { id: 2, name: 'Project Beta', description: 'Enhancing customer service platform', status: 'Completed' },
-  { id: 3, name: 'Project Gamma', description: 'Upgrading IT infrastructure', status: 'Planning' },
+  { id: 1, name: 'Project Alpha', status: 'In Progress' },
+  { id: 2, name: 'Project Beta', status: 'Completed' },
+  { id: 3, name: 'Project Gamma', status: 'Planning' },
 ];
 
 import { announcementsService } from './announcementsService';
 import { eventsService } from './eventsService';
 
-// Import the markdown content directly
-const announcementsContent = `
-# Company Announcements
-
-## New Company Policy Update
-**Date: 2025-04-05 | Important**
-
-Please review the updated remote work policy before the end of the month. The new policy includes flexible working arrangements and updated guidelines for hybrid work schedules.
-
-## Quarterly All-Hands Meeting
-**Date: 2025-04-15 | Important**
-
-Join us for our Q2 all-hands meeting next Friday at 2pm in the main conference room. We'll be discussing company performance, upcoming projects, and strategic initiatives.
-
-## IT System Maintenance
-**Date: 2025-04-12**
-
-The IT systems will be down for maintenance this Saturday from 10pm to 2am. Please save your work and log out before the maintenance window begins.
-`;
-
-const eventsContent = `
-# Upcoming Events
-
-## 智騰半導體 首次員工旅遊
-**Date: Sep. 13/14, 2025**
-**Time: ALL DAY**
-**Location: 雲品 日月潭**
-
-## 智騰半導體 2025 股東會
-**Date: June 30, 2025**
-**Time: 10:00 AM**
-**Location: Conference Room A**
-
-Important meeting to discuss the upcoming product launch strategy and timeline.
-
-## 智騰半導體 首次員工教育訓練Team Building Event
-**Date: April 15, 2025**
-**Time: 2:00 PM**
-**Location: Central Park**
-
-Annual team building activities to strengthen collaboration and team spirit.
-
-## 智騰半導體 首次員工教育訓練
-**Date: Jan 07, 2025**
-**Time: 13:00 AM**
-**Location: 肯沃商務中心 Training Center**
-
-Professional development workshop on new technologies and best practices.
-`;
-
 export const departmentsApi = {
   getAll: async (): Promise<Department[]> => {
-    // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 500));
     return departmentsData;
   },
@@ -96,7 +45,6 @@ export const departmentsApi = {
 
 export const documentsApi = {
   getAll: async (): Promise<Document[]> => {
-    // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 500));
     return documentsData;
   },
@@ -104,39 +52,86 @@ export const documentsApi = {
 
 export const announcementsApi = {
   getAll: async (): Promise<Announcement[]> => {
-    // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 500));
     
-    const parsed = announcementsService.parseMarkdown(announcementsContent);
-    return parsed.map((item, index) => ({
-      id: index + 1,
-      title: item.title,
-      description: item.description,
-      date: item.date,
-      important: item.important
-    }));
+    try {
+      const response = await fetch('/src/data/content/announcements.md');
+      const content = await response.text();
+      const parsed = announcementsService.parseMarkdown(content);
+      return parsed.map((item, index) => ({
+        id: index + 1,
+        title: item.title,
+        description: item.description,
+        date: item.date,
+        important: item.important
+      }));
+    } catch (error) {
+      console.error('Error loading announcements:', error);
+      return [];
+    }
+  },
+  
+  create: async (announcement: Omit<Announcement, 'id'>): Promise<Announcement> => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const newId = Math.max(...(await announcementsApi.getAll()).map(a => a.id)) + 1;
+    return { ...announcement, id: newId };
+  },
+  
+  update: async (id: number, data: Partial<Announcement>): Promise<Announcement> => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const announcements = await announcementsApi.getAll();
+    const existing = announcements.find(a => a.id === id);
+    if (!existing) throw new Error('Announcement not found');
+    return { ...existing, ...data };
+  },
+  
+  delete: async (id: number): Promise<void> => {
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
 };
 
 export const eventsApi = {
   getAll: async (): Promise<Event[]> => {
-    // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 500));
     
-    const parsed = eventsService.parseMarkdown(eventsContent);
-    return parsed.map((item, index) => ({
-      id: index + 1,
-      title: item.title,
-      date: item.date,
-      time: item.time,
-      location: item.location
-    }));
+    try {
+      const response = await fetch('/src/data/content/events.md');
+      const content = await response.text();
+      const parsed = eventsService.parseMarkdown(content);
+      return parsed.map((item, index) => ({
+        id: index + 1,
+        title: item.title,
+        date: item.date,
+        time: item.time,
+        location: item.location
+      }));
+    } catch (error) {
+      console.error('Error loading events:', error);
+      return [];
+    }
+  },
+  
+  create: async (event: Omit<Event, 'id'>): Promise<Event> => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const newId = Math.max(...(await eventsApi.getAll()).map(e => e.id)) + 1;
+    return { ...event, id: newId };
+  },
+  
+  update: async (id: number, data: Partial<Event>): Promise<Event> => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const events = await eventsApi.getAll();
+    const existing = events.find(e => e.id === id);
+    if (!existing) throw new Error('Event not found');
+    return { ...existing, ...data };
+  },
+  
+  delete: async (id: number): Promise<void> => {
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
 };
 
 export const projectsApi = {
   getAll: async (): Promise<Project[]> => {
-    // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 500));
     return projectsData;
   },

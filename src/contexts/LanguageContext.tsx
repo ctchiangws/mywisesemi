@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'en' | 'zh';
@@ -14,7 +13,7 @@ const translations: Translations = {
   // Header translations
   'intranet': {
     'en': 'MyWiseSemi',
-    'zh': '智騰圈',
+    'zh': 'mywisesemi',
   },
   'admin': {
     'en': 'Admin',
@@ -57,6 +56,10 @@ const translations: Translations = {
   'home.daily_tools': {
     'en': 'Daily Tools',
     'zh': '日常工具',
+  },
+  'home.life_in_wisesemi': {
+    'en': 'Life in Wisesemi',
+    'zh': 'Wisesemi生活',
   },
   // Department translations
   'dept.ceo-office': {
@@ -115,7 +118,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('zh');
 
   // Translation function
   const t = (key: string): string => {

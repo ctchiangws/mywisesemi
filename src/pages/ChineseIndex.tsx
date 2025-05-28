@@ -8,6 +8,7 @@ import EventCalendar from '@/components/EventCalendar';
 import SharedDocuments from '@/components/SharedDocuments';
 import TopCalendar from '@/components/TopCalendar';
 import ISODocuments from '@/components/ISODocuments';
+import LifeInWisesemi from '@/components/LifeInWisesemi';
 import DailyTools from '@/components/DailyTools';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -20,10 +21,11 @@ const ChineseIndex = () => {
       
       <main className="flex-1 container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Left Column - Departments, ISO 9001 */}
+          {/* Left Column - Departments, ISO 9001, Life in Wisesemi */}
           <div className="flex flex-col space-y-6">
             <DepartmentsList />
             <ISODocuments />
+            <LifeInWisesemi />
           </div>
           
           {/* Middle Column - Announcements and Calendar */}

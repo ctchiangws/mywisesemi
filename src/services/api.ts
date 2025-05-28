@@ -1,4 +1,3 @@
-
 import { Department, Document, Announcement, Event, Project } from '@/types';
 
 const departmentsData: Department[] = [
@@ -24,7 +23,6 @@ const documentsData: Document[] = [
   { id: 6, name: 'Project Proposal Template', type: 'document', path: '/documents/project-template' },
   { id: 7, name: 'IT FAQ', type: 'faq', path: 'http://mywisesemi.it.wisesemi.com' },
   { id: 8, name: 'New Employee Guide', type: 'guide', path: '/documents/new-employee-guide' },
-  { id: 9, name: 'Life in WiseSemi', type: 'document', path: 'http://mywisesemi.life.wisesemi.com' },
 ];
 
 const projectsData: Project[] = [

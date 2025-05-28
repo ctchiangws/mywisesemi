@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Users, Calendar, Coffee, Camera } from 'lucide-react';
+import { Heart, Users, Coffee, Camera, Scale } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -29,15 +29,16 @@ const LifeInWisesemi = () => {
     },
     {
       id: 4,
-      name: language === 'zh' ? '節慶活動' : 'Holiday Events',
-      path: '/documents/holiday-events',
-      icon: <Calendar className="h-4 w-4 mr-2 text-green-500" />
+      name: language === 'zh' ? '工作生活平衡' : 'Work Life Balance',
+      path: '/documents/work-life-balance',
+      icon: <Scale className="h-4 w-4 mr-2 text-purple-500" />
     },
     {
       id: 5,
       name: language === 'zh' ? '員工相簿' : 'Photo Gallery',
-      path: '/documents/photo-gallery',
-      icon: <Camera className="h-4 w-4 mr-2 text-blue-500" />
+      path: 'http://mywisesemi.photo.wisesemi.com/',
+      icon: <Camera className="h-4 w-4 mr-2 text-blue-500" />,
+      isExternal: true
     }
   ];
 
@@ -53,15 +54,29 @@ const LifeInWisesemi = () => {
         <ul className="space-y-1">
           {lifeItems.map((item) => (
             <li key={item.id}>
-              <Link
-                to={item.path}
-                className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
-              >
-                {item.icon}
-                <span className="text-gray-700 group-hover:text-wisesemi-dark">
-                  {item.name}
-                </span>
-              </Link>
+              {item.isExternal ? (
+                <a
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
+                >
+                  {item.icon}
+                  <span className="text-gray-700 group-hover:text-wisesemi-dark">
+                    {item.name}
+                  </span>
+                </a>
+              ) : (
+                <Link
+                  to={item.path}
+                  className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
+                >
+                  {item.icon}
+                  <span className="text-gray-700 group-hover:text-wisesemi-dark">
+                    {item.name}
+                  </span>
+                </Link>
+              )}
             </li>
           ))}
         </ul>

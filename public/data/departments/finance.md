@@ -15,10 +15,7 @@ The Finance department oversees financial planning, accounting, budgeting, and f
 
 ## Team Members
 
-- Robert Thompson, Finance Director
-- Lisa Zhang, Senior Accountant
-- Michael Liu, Financial Analyst
-- Jennifer Wu, Accounts Payable Specialist
+- YP Fang, Finance Director
 
 ## Focus Areas
 

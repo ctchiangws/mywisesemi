@@ -2,19 +2,7 @@
 # 團隊建設 / Team Building
 
 ## 團隊建設活動 Team Building Activities
-
-### 密室脫逃 Escape Room
-訓練團隊合作與解決問題的能力。
-
-Training teamwork and problem-solving skills through escape room challenges.
-
-**推薦地點 Recommended Venues：**
-- 實境密室 Reality Escape Room
-- 諜報風雲 Spy Adventure
-- 古墓探險 Tomb Adventure
-
-**活動時間 Duration：** 2-3小時
-**參與人數 Participants：** 6-8人一組
+## 未來活動規劃中 
 
 ### 保齡球比賽 Bowling Competition
 放鬆心情，增進同事友誼。

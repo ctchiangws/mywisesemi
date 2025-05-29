@@ -155,7 +155,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     type: 'life',
     lastUpdated: '2025-04-01',
     author: 'HR Department',
-    path: '/data/life/photo-gallery.md'
+    path: 'http://mywisesemi.photo.wisesemi.com/'
   },
   // Announcements
   'announcements': {
@@ -174,6 +174,71 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     lastUpdated: '2025-04-01',
     author: 'Event Coordinator',
     path: '/data/events.md'
+  },
+  // Shared Documents
+  'marketing-assets': {
+    id: 'marketing-assets',
+    name: 'Marketing Assets',
+    type: 'document',
+    lastUpdated: '2025-04-01',
+    author: 'Marketing Team',
+    path: '/data/documents/marketing-assets.md'
+  },
+  'employee-handbook': {
+    id: 'employee-handbook',
+    name: 'Employee Handbook',
+    type: 'document',
+    lastUpdated: '2025-04-01',
+    author: 'HR Department',
+    path: '/data/documents/employee-handbook.md'
+  },
+  'financial-report': {
+    id: 'financial-report',
+    name: 'Financial Report',
+    type: 'document',
+    lastUpdated: '2025-04-01',
+    author: 'Finance Team',
+    path: '/data/documents/financial-report.md'
+  },
+  'project-template': {
+    id: 'project-template',
+    name: 'Project Template',
+    type: 'document',
+    lastUpdated: '2025-04-01',
+    author: 'Project Management',
+    path: '/data/documents/project-template.md'
+  },
+  'product-roadmap': {
+    id: 'product-roadmap',
+    name: 'Product Roadmap',
+    type: 'document',
+    lastUpdated: '2025-04-01',
+    author: 'Product Team',
+    path: '/data/documents/product-roadmap.md'
+  },
+  'new-employee-guide': {
+    id: 'new-employee-guide',
+    name: 'New Employee Guide',
+    type: 'guide',
+    lastUpdated: '2025-04-01',
+    author: 'HR Department',
+    path: '/data/documents/new-employee-guide.md'
+  },
+  'it-faq': {
+    id: 'it-faq',
+    name: 'IT FAQ',
+    type: 'faq',
+    lastUpdated: '2025-04-01',
+    author: 'IT Department',
+    path: '/data/documents/it-faq.md'
+  },
+  'brand-guidelines': {
+    id: 'brand-guidelines',
+    name: 'Brand Guidelines',
+    type: 'document',
+    lastUpdated: '2025-04-01',
+    author: 'Marketing Team',
+    path: '/data/documents/brand-guidelines.md'
   }
 };
 
@@ -188,7 +253,7 @@ export const contentService = {
         filePath = contentRegistry[contentId].path;
       } else {
         // Fallback for documents not in registry
-        filePath = `/data/${contentId}.md`;
+        filePath = `/data/documents/${contentId}.md`;
       }
       
       const response = await fetch(filePath);

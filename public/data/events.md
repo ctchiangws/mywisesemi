@@ -13,7 +13,7 @@
 **Location: New Conference Room**
 
 ## 2025 Q2季會與慶生會
-**Date: May 30, 2025**
+**Date: May 09, 2025**
 **Time: 12:00 PM**
 **Location: 八庵日本料理文興旗艦店**
 

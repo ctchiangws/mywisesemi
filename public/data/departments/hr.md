@@ -31,4 +31,4 @@ The Human Resources department is responsible for managing employee relations, r
 
 For HR-related inquiries, please contact the HR department at hr@wisesemi.com or visit our office on the 2nd floor.
 
-如有人資相關詢問，請聯絡人力資源部：hr@wisesemi.com 或親訪二樓辦公室。
+如有人資相關詢問，請聯絡人力資源部

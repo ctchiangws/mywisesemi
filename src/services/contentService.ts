@@ -231,17 +231,29 @@ export const contentService = {
     try {
       let filePath = '';
       
-      // Determine the correct file path based on content type and ID
-      if (contentRegistry[contentId]) {
+      // Handle different content ID formats
+      if (contentId.includes('/')) {
+        // If contentId is like 'departments/ceo-office', extract just the ID
+        const actualId = contentId.split('/').pop();
+        if (actualId && contentRegistry[actualId]) {
+          filePath = contentRegistry[actualId].path;
+        } else {
+          // Fallback: construct path directly
+          filePath = `/data/${contentId}.md`;
+        }
+      } else if (contentRegistry[contentId]) {
+        // Direct lookup by ID
         filePath = contentRegistry[contentId].path;
       } else {
         // Fallback for documents not in registry
         filePath = `/data/documents/${contentId}.md`;
       }
       
+      console.log(`Loading content from: ${filePath}`);
+      
       const response = await fetch(filePath);
       if (!response.ok) {
-        throw new Error(`Failed to load content: ${contentId}`);
+        throw new Error(`Failed to load content: ${contentId}, status: ${response.status}`);
       }
       return await response.text();
     } catch (error) {
@@ -251,6 +263,11 @@ export const contentService = {
   },
 
   getContentMetadata(contentId: string): ContentMetadata | null {
+    // Handle different content ID formats
+    if (contentId.includes('/')) {
+      const actualId = contentId.split('/').pop();
+      return actualId ? contentRegistry[actualId] || null : null;
+    }
     return contentRegistry[contentId] || null;
   },
 

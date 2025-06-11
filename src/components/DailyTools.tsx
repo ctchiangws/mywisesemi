@@ -55,7 +55,7 @@ const DailyTools = () => {
       id: 5,
       name: language === 'zh' ? '智騰日曆' : 'WiseSemi Calendar',
       type: 'calendar',
-      path: 'https://172.16.0.253/calendar'
+      path: 'https://172.16.0.253/wscalendar'
     },
     {
       id: 6,

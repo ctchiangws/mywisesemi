@@ -1,17 +1,21 @@
+# 建構中
 
-# 建構中 範例報告如下
+# 員工常見問題
 
-# IT 常見問題
+## 如何查詢電子薪資單
+
+![how_to_query_salary](./images/query_salary.jpg)
 
 ## 網路存取
 
 ### 如何連接公司WiFi？
 
-選擇「WiseSemi-Secure」網路，輸入您的員工ID作為用戶名和您的網路密碼。
+選擇 wifi 「wisesemi_guest」網路，輸入公司統編 90163588 即可連接。
+「wisesemi_oa」「wisesemi_employee」網路，僅允許公司授權裝置連接。
 
 ### 我忘記了網路密碼，該怎麼辦？
 
-請造訪IT服務台入口網站或聯絡IT部門：it.support@wisesemi.com
+請造訪IT服務台入口網站或聯絡IT部門：itcad@wisesemi.com
 
 ## 硬體支援
 

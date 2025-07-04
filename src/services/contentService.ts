@@ -1,4 +1,3 @@
-
 export interface ContentMetadata {
   id: string;
   name: string;
@@ -175,14 +174,6 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     author: 'HR Department',
     path: '/data/documents/employee-handbook.md'
   },
-  'financial-report': {
-    id: 'financial-report',
-    name: 'Financial Report',
-    type: 'document',
-    lastUpdated: '2025-04-01',
-    author: 'Finance Team',
-    path: '/data/documents/financial-report.md'
-  },
   'project-template': {
     id: 'project-template',
     name: 'Project Template',
@@ -207,21 +198,13 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     author: 'HR Department',
     path: '/data/documents/new-employee-guide.md'
   },
-  'it-faq': {
-    id: 'it-faq',
-    name: 'IT FAQ',
+  'employee-faq': {
+    id: 'employee-faq',
+    name: 'Employee FAQ',
     type: 'faq',
     lastUpdated: '2025-04-01',
-    author: 'IT Department',
-    path: '/data/documents/it-faq.md'
-  },
-  'brand-guidelines': {
-    id: 'brand-guidelines',
-    name: 'Brand Guidelines',
-    type: 'document',
-    lastUpdated: '2025-04-01',
-    author: 'Marketing Team',
-    path: '/data/documents/brand-guidelines.md'
+    author: 'HR Department',
+    path: '/data/documents/employee-faq.md'
   }
 };
 

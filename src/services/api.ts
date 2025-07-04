@@ -15,13 +15,11 @@ const departmentsData: Department[] = [
 ];
 
 const documentsData: Document[] = [
-  { id: 1, name: '第一季財務報告', type: 'spreadsheet', path: '/documents/financial-report' },
-  { id: 2, name: '品牌指南 2025', type: 'document', path: '/documents/brand-guidelines' },
   { id: 3, name: '員工手冊', type: 'document', path: '/documents/employee-handbook' },
   { id: 4, name: '產品路線圖', type: 'document', path: '/documents/product-roadmap' },
   { id: 5, name: '行銷素材庫', type: 'image', path: '/documents/marketing-assets' },
   { id: 6, name: '專案提案模板', type: 'document', path: '/documents/project-template' },
-  { id: 7, name: 'IT 常見問題', type: 'faq', path: '/documents/it-faq' },
+  { id: 7, name: '員工常見問題', type: 'faq', path: '/documents/employee-faq' },
   { id: 8, name: '新員工指南', type: 'guide', path: '/documents/new-employee-guide' },
 ];
 

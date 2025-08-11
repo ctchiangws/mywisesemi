@@ -1,10 +1,35 @@
-# 建構中
+# 持續新增問題中
 
 # 員工常見問題
 
 ## 如何查詢電子薪資單
 
 ![how_to_query_salary](./images/query_salary.jpg)
+
+
+## 如何使用請假系統
+
+公司請假系統目前使用 Ragic 雲端系統建構。
+新進員工 IT 會協助開設帳號。
+如忘記密碼請與 IT 聯絡。
+<!-- extra blank lines here -->
+<!-- extra blank lines here -->
+
+<!-- extra blank lines here -->
+---
+
+
+
+## 我有多少假？
+
+## 如何使用請假
+
+## 如何使用加班
+
+
+## 如何從系統知道我還有多少假期
+
+
 
 ## 網路存取
 

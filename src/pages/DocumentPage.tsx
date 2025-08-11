@@ -4,6 +4,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const DocumentPage = () => {
   const { docId } = useParams<{ docId: string }>();
@@ -75,64 +79,96 @@ const DocumentPage = () => {
     );
   }
   
-  // Enhanced markdown rendering with image support
-  const renderMarkdown = (markdown: string) => {
-    const lines = markdown.split('\n');
-    return (
-      <div className="markdown">
-        {lines.map((line, index) => {
-          // Handle images: ![alt](path)
-          const imageMatch = line.match(/^!\[(.*?)\]\((.*?)\)$/);
-          if (imageMatch) {
-            const altText = imageMatch[1];
-            let imagePath = imageMatch[2];
-            
-            // Handle relative paths starting with ./
-            if (imagePath.startsWith('./')) {
-              // Convert relative path to absolute path from public folder
-              imagePath = `/data/documents/${imagePath.substring(2)}`;
-            }
-            
-            return (
-              <div key={index} className="my-4">
-                <img 
-                  src={imagePath} 
-                  alt={altText} 
-                  className="max-w-full h-auto rounded-lg shadow-md"
-                  onError={(e) => {
-                    console.error(`Failed to load image: ${imagePath}`);
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-              </div>
-            );
-          }
-          
-          if (line.startsWith('# ')) {
-            return <h1 key={index} className="text-2xl font-bold mb-4">{line.substring(2)}</h1>;
-          } else if (line.startsWith('## ')) {
-            return <h2 key={index} className="text-xl font-semibold mt-6 mb-3">{line.substring(3)}</h2>;
-          } else if (line.startsWith('### ')) {
-            return <h3 key={index} className="text-lg font-semibold mt-4 mb-2">{line.substring(4)}</h3>;
-          } else if (line.startsWith('**') && line.endsWith('**')) {
-            return <p key={index} className="font-semibold mb-2">{line.substring(2, line.length - 2)}</p>;
-          } else if (line.startsWith('- [ ] ')) {
-            return (
-              <div key={index} className="flex items-start ml-6 mb-1">
-                <div className="border border-gray-300 rounded w-4 h-4 mt-1 mr-2"></div>
-                <span>{line.substring(6)}</span>
-              </div>
-            );
-          } else if (line.startsWith('- ')) {
-            return <li key={index} className="ml-6 mb-1">{line.substring(2)}</li>;
-          } else if (line === '') {
-            return <p key={index} className="my-2"></p>;
-          } else {
-            return <p key={index} className="mb-2">{line}</p>;
-          }
-        })}
+  // Custom components for ReactMarkdown
+  const components = {
+    // Custom image component to handle relative paths
+    img: ({ src, alt, ...props }: any) => {
+      let imagePath = src;
+      
+      // Handle relative paths starting with ./
+      if (imagePath?.startsWith('./')) {
+        imagePath = `/data/documents/${imagePath.substring(2)}`;
+      }
+      
+      return (
+        <div className="my-4">
+          <img 
+            src={imagePath} 
+            alt={alt} 
+            className="max-w-full h-auto rounded-lg shadow-md"
+            onError={(e) => {
+              console.error(`Failed to load image: ${imagePath}`);
+              e.currentTarget.style.display = 'none';
+            }}
+            {...props}
+          />
+        </div>
+      );
+    },
+    // Custom code block component with syntax highlighting
+    code: ({ inline, className, children, ...props }: any) => {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match ? (
+        <SyntaxHighlighter
+          style={tomorrow}
+          language={match[1]}
+          PreTag="div"
+          className="rounded-md"
+          {...props}
+        >
+          {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+      ) : (
+        <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono" {...props}>
+          {children}
+        </code>
+      );
+    },
+    // Styled components for other elements
+    h1: ({ children, ...props }: any) => (
+      <h1 className="text-2xl font-bold mb-4 mt-6 first:mt-0" {...props}>{children}</h1>
+    ),
+    h2: ({ children, ...props }: any) => (
+      <h2 className="text-xl font-semibold mt-6 mb-3" {...props}>{children}</h2>
+    ),
+    h3: ({ children, ...props }: any) => (
+      <h3 className="text-lg font-semibold mt-4 mb-2" {...props}>{children}</h3>
+    ),
+    p: ({ children, ...props }: any) => (
+      <p className="mb-3 leading-relaxed" {...props}>{children}</p>
+    ),
+    ul: ({ children, ...props }: any) => (
+      <ul className="list-disc list-inside mb-4 space-y-1" {...props}>{children}</ul>
+    ),
+    ol: ({ children, ...props }: any) => (
+      <ol className="list-decimal list-inside mb-4 space-y-1" {...props}>{children}</ol>
+    ),
+    li: ({ children, ...props }: any) => (
+      <li className="ml-2" {...props}>{children}</li>
+    ),
+    blockquote: ({ children, ...props }: any) => (
+      <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4" {...props}>{children}</blockquote>
+    ),
+    table: ({ children, ...props }: any) => (
+      <div className="overflow-x-auto my-4">
+        <table className="min-w-full border-collapse border border-gray-300" {...props}>
+          {children}
+        </table>
       </div>
-    );
+    ),
+    th: ({ children, ...props }: any) => (
+      <th className="border border-gray-300 px-4 py-2 bg-gray-100 font-semibold text-left" {...props}>
+        {children}
+      </th>
+    ),
+    td: ({ children, ...props }: any) => (
+      <td className="border border-gray-300 px-4 py-2" {...props}>{children}</td>
+    ),
+    a: ({ children, href, ...props }: any) => (
+      <a href={href} className="text-blue-600 hover:text-blue-800 underline" {...props}>
+        {children}
+      </a>
+    ),
   };
 
   if (loading) {
@@ -172,7 +208,12 @@ const DocumentPage = () => {
           </div>
         </CardHeader>
         <CardContent className="pt-6">
-          {renderMarkdown(content)}
+          <ReactMarkdown 
+            remarkPlugins={[remarkGfm]}
+            components={components}
+          >
+            {content}
+          </ReactMarkdown>
         </CardContent>
       </Card>
     </div>

@@ -4,8 +4,8 @@
 ---
 ## HR 通知
 **Date: 2025-08-11**
-員工日月潭旅遊
-**[📄 日月潭](./sunmoomlake.pdf)
+員工日月潭旅遊   
+[📄 日月潭](./sunmoonlake.pdf)
 ---
 ## HR 通知
 **Date: 2025-08-11**
@@ -17,7 +17,7 @@
 ---
 ## IT 通知
 **Date: 2025-06-09**
-爲有更好的整合，將 Synology Office 與 MailPlus 移至相同主機
+爲有更好的整合，將 Synology Office 與 MailPlus 移至相同主機  
 請更新所有 Synology OA Drive, 行事曆，聯絡簿相關設定
 
 

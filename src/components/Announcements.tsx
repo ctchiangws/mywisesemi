@@ -5,6 +5,8 @@ import { Megaphone } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { announcementsApi } from '@/services/api';
 import { Announcement } from '@/types';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const Announcements = () => {
   const { data: announcements = [], isLoading, error } = useQuery({
@@ -39,7 +41,27 @@ const Announcements = () => {
                   <h3 className="font-medium text-wisesemi-dark">{announcement.title}</h3>
                   <span className="text-xs text-gray-500">{announcement.date}</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">{announcement.description}</p>
+                <div className="text-sm text-gray-600 mt-1 prose prose-sm max-w-none">
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      a: ({ href, children, ...props }) => (
+                        <a 
+                          href={href} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-wisesemi hover:text-wisesemi-dark underline"
+                          {...props}
+                        >
+                          {children}
+                        </a>
+                      ),
+                      p: ({ children }) => <span>{children}</span>
+                    }}
+                  >
+                    {announcement.description}
+                  </ReactMarkdown>
+                </div>
               </div>
             ))}
           </div>

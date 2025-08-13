@@ -37,11 +37,20 @@ export const lastSeenService = {
       if (config && Object.keys(data).length > config.maxStorageEntries) {
         // Remove oldest entries
         const entries = Object.entries(data);
-        entries.sort(([,a], [,b]) => a.timestamp - b.timestamp);
+        entries.sort(([,a], [,b]) => {
+          // Type guard to ensure a and b have timestamp property
+          if (a && typeof a === 'object' && 'timestamp' in a && 
+              b && typeof b === 'object' && 'timestamp' in b) {
+            return (a as { timestamp: number }).timestamp - (b as { timestamp: number }).timestamp;
+          }
+          return 0;
+        });
         const toKeep = entries.slice(-config.maxStorageEntries);
         const newData: LastSeenData = {};
         toKeep.forEach(([key, value]) => {
-          newData[key] = value;
+          if (value && typeof value === 'object' && 'timestamp' in value && 'contentType' in value) {
+            newData[key] = value as { timestamp: number; contentType: string };
+          }
         });
         localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
       } else {

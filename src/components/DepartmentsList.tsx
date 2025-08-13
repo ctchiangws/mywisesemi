@@ -7,28 +7,26 @@ import { useQuery } from '@tanstack/react-query';
 import { departmentsApi } from '@/services/api';
 import { Department } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
+import NewBadge from '@/components/ui/new-badge';
+import { useNewContent, useNewContentCount } from '@/hooks/useNewContent';
+import { Button } from '@/components/ui/button';
+import { lastSeenService } from '@/services/lastSeenService';
+import { useConfiguration } from '@/contexts/ConfigurationContext';
 
-const DepartmentsList = () => {
+const DepartmentItem = ({ department }: { department: Department }) => {
   const { t } = useLanguage();
+  const { isNew, markAsSeen } = useNewContent(department.name.toLowerCase(), 'departments');
   
-  const { data: departments = [], isLoading, error } = useQuery({
-    queryKey: ['departments'],
-    queryFn: departmentsApi.getAll,
-  });
-
   const getDepartmentName = (dept: Department) => {
-    // Special case for QA department to display "QA" instead of "Quality Management"
     if (dept.name === 'QA') {
       return 'QA';
     }
     
-    // For external links, use the department name directly
     if (isExternalLink(dept.path)) {
       const translationKey = `dept.${dept.name.toLowerCase()}`;
       return t(translationKey);
     }
     
-    // For internal links, extract from path
     const deptKey = dept.path.split('/').pop();
     const translationKey = `dept.${deptKey}`;
     return t(translationKey);
@@ -38,10 +36,80 @@ const DepartmentsList = () => {
     return path.startsWith('http://') || path.startsWith('https://');
   };
 
+  const handleClick = () => {
+    markAsSeen();
+  };
+
+  return (
+    <li key={department.id}>
+      {isExternalLink(department.path) ? (
+        <a
+          href={department.path}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
+          onClick={handleClick}
+        >
+          <Folder className="h-4 w-4 mr-2 text-wisesemi-dark group-hover:text-wisesemi" />
+          <span className="text-gray-700 group-hover:text-wisesemi-dark flex-grow">
+            {getDepartmentName(department)}
+          </span>
+          <NewBadge show={isNew} size="sm" />
+        </a>
+      ) : (
+        <Link 
+          to={department.path}
+          className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
+          onClick={handleClick}
+        >
+          <Folder className="h-4 w-4 mr-2 text-wisesemi-dark group-hover:text-wisesemi" />
+          <span className="text-gray-700 group-hover:text-wisesemi-dark flex-grow">
+            {getDepartmentName(department)}
+          </span>
+          <NewBadge show={isNew} size="sm" />
+        </Link>
+      )}
+    </li>
+  );
+};
+
+const DepartmentsList = () => {
+  const { t } = useLanguage();
+  const { config } = useConfiguration();
+  
+  const { data: departments = [], isLoading, error } = useQuery({
+    queryKey: ['departments'],
+    queryFn: departmentsApi.getAll,
+  });
+
+  const departmentIds = departments.map((d: Department) => d.name.toLowerCase());
+  const newCount = useNewContentCount(departmentIds, 'departments');
+
+  const markAllAsSeen = () => {
+    departments.forEach((department: Department) => {
+      lastSeenService.markAsSeen(department.name.toLowerCase(), 'departments');
+    });
+    window.location.reload();
+  };
+
   return (
     <Card className="h-full">
       <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-semibold text-wisesemi-dark">{t('home.departments')}</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg font-semibold text-wisesemi-dark flex items-center">
+            {t('home.departments')}
+            {config.showCounters && newCount > 0 && (
+              <span className="ml-2 text-sm bg-red-500 text-white px-2 py-1 rounded-full">
+                {newCount} new
+              </span>
+            )}
+          </CardTitle>
+          {newCount > 0 && (
+            <Button variant="outline" size="sm" onClick={markAllAsSeen}>
+              Mark all read
+            </Button>
+          )}
+        </div>
       </CardHeader>
       <CardContent>
         {isLoading ? (
@@ -55,31 +123,7 @@ const DepartmentsList = () => {
         ) : (
           <ul className="space-y-2">
             {departments.map((department: Department) => (
-              <li key={department.id}>
-                {isExternalLink(department.path) ? (
-                  <a
-                    href={department.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
-                  >
-                    <Folder className="h-4 w-4 mr-2 text-wisesemi-dark group-hover:text-wisesemi" />
-                    <span className="text-gray-700 group-hover:text-wisesemi-dark">
-                      {getDepartmentName(department)}
-                    </span>
-                  </a>
-                ) : (
-                  <Link 
-                    to={department.path}
-                    className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
-                  >
-                    <Folder className="h-4 w-4 mr-2 text-wisesemi-dark group-hover:text-wisesemi" />
-                    <span className="text-gray-700 group-hover:text-wisesemi-dark">
-                      {getDepartmentName(department)}
-                    </span>
-                  </Link>
-                )}
-              </li>
+              <DepartmentItem key={department.id} department={department} />
             ))}
           </ul>
         )}

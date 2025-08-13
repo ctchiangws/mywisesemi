@@ -7,6 +7,11 @@ import { useQuery } from '@tanstack/react-query';
 import { documentsApi } from '@/services/api';
 import { Document } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
+import NewBadge from '@/components/ui/new-badge';
+import { useNewContent, useNewContentCount } from '@/hooks/useNewContent';
+import { Button } from '@/components/ui/button';
+import { lastSeenService } from '@/services/lastSeenService';
+import { useConfiguration } from '@/contexts/ConfigurationContext';
 
 const getIcon = (type: string) => {
   switch (type) {
@@ -27,20 +32,83 @@ const isExternalLink = (path: string) => {
   return path.startsWith('http://') || path.startsWith('https://');
 };
 
+const DocumentItem = ({ document }: { document: Document }) => {
+  const { isNew, markAsSeen } = useNewContent(`document-${document.id}`, 'documents');
+  
+  const handleClick = () => {
+    markAsSeen();
+  };
+
+  return (
+    <li key={document.id}>
+      {isExternalLink(document.path) ? (
+        <a
+          href={document.path}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
+          onClick={handleClick}
+        >
+          {getIcon(document.type)}
+          <span className="text-gray-700 group-hover:text-wisesemi-dark flex-grow">
+            {document.name}
+          </span>
+          <NewBadge show={isNew} size="sm" />
+        </a>
+      ) : (
+        <Link
+          to={document.path}
+          className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
+          onClick={handleClick}
+        >
+          {getIcon(document.type)}
+          <span className="text-gray-700 group-hover:text-wisesemi-dark flex-grow">
+            {document.name}
+          </span>
+          <NewBadge show={isNew} size="sm" />
+        </Link>
+      )}
+    </li>
+  );
+};
+
 const SharedDocuments = () => {
   const { t } = useLanguage();
+  const { config } = useConfiguration();
   
   const { data: documents = [], isLoading } = useQuery({
     queryKey: ['documents'],
     queryFn: documentsApi.getAll
   });
 
+  const documentIds = documents.map((d: Document) => `document-${d.id}`);
+  const newCount = useNewContentCount(documentIds, 'documents');
+
+  const markAllAsSeen = () => {
+    documents.forEach((document: Document) => {
+      lastSeenService.markAsSeen(`document-${document.id}`, 'documents');
+    });
+    window.location.reload();
+  };
+
   return (
     <Card className="h-full">
       <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-semibold text-wisesemi-dark">
-          {t('home.shared_documents')}
-        </CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg font-semibold text-wisesemi-dark flex items-center">
+            {t('home.shared_documents')}
+            {config.showCounters && newCount > 0 && (
+              <span className="ml-2 text-sm bg-red-500 text-white px-2 py-1 rounded-full">
+                {newCount} new
+              </span>
+            )}
+          </CardTitle>
+          {newCount > 0 && (
+            <Button variant="outline" size="sm" onClick={markAllAsSeen}>
+              Mark all read
+            </Button>
+          )}
+        </div>
       </CardHeader>
       <CardContent>
         {isLoading ? (
@@ -52,31 +120,7 @@ const SharedDocuments = () => {
         ) : (
           <ul className="space-y-2">
             {documents.map((document: Document) => (
-              <li key={document.id}>
-                {isExternalLink(document.path) ? (
-                  <a
-                    href={document.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
-                  >
-                    {getIcon(document.type)}
-                    <span className="text-gray-700 group-hover:text-wisesemi-dark">
-                      {document.name}
-                    </span>
-                  </a>
-                ) : (
-                  <Link
-                    to={document.path}
-                    className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
-                  >
-                    {getIcon(document.type)}
-                    <span className="text-gray-700 group-hover:text-wisesemi-dark">
-                      {document.name}
-                    </span>
-                  </Link>
-                )}
-              </li>
+              <DocumentItem key={document.id} document={document} />
             ))}
           </ul>
         )}

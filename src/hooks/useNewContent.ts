@@ -26,7 +26,7 @@ export const useNewContent = (contentId: string, contentType: string) => {
     }
     
     // If seen, check if content was updated after last seen
-    return lastUpdated > lastSeen;
+    return lastUpdated > lastSeen.getTime();
   }, [contentId, contentType, config]);
 
   const markAsSeen = () => {
@@ -59,7 +59,7 @@ export const useNewContentCount = (contentIds: string[], contentType: string) =>
         return (now - lastUpdated) <= persistenceWindow;
       }
       
-      return lastUpdated > lastSeen;
+      return lastUpdated > lastSeen.getTime();
     }).length;
   }, [contentIds, contentType, config]);
 

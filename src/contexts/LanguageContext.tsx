@@ -82,13 +82,9 @@ const translations: Translations = {
     'en': 'Corporate Operation',
     'zh': '企業營運部',
   },
-  'dept.itcad': {
+  'dept.design infrastructure': {
     'en': 'Design Infrastructure',
     'zh': '設計架構部',
-  },
-  'dept.qa': {
-    'en': 'QA',
-    'zh': '品質保證部',
   },
   // Add more translations as needed
 };

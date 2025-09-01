@@ -1,9 +1,10 @@
 
-# CEO Office / 執行長辦公室
 
-The CEO Office provides executive leadership and strategic direction for the entire organization, ensuring alignment with company vision and objectives.
+# CEO / 執行長
 
-執行長辦公室為整個組織提供高層領導和戰略方向，確保與公司願景和目標保持一致。
+The CEO provides executive leadership and strategic direction for the entire organization, ensuring alignment with company vision and objectives.
+
+執行長為整個組織提供高層領導和戰略方向，確保與公司願景和目標保持一致。
 
 ## Key Responsibilities / 主要職責
 
@@ -25,3 +26,4 @@ The CEO Office provides executive leadership and strategic direction for the ent
 - Innovation initiatives / 創新計劃
 - Market expansion / 市場擴張
 - Partnership development / 合作夥伴發展
+

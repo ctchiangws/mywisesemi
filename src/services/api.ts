@@ -1,7 +1,8 @@
+
 import { Department, Document, Announcement, Event, Project } from '@/types';
 
 const departmentsData: Department[] = [
-  { id: 1, name: 'CEO Office', path: '/departments/ceo-office' },
+  { id: 1, name: 'CEO', path: '/departments/ceo-office' },
   { id: 9, name: 'Corporate Operation', path: '/departments/operations' },
   { id: 8, name: 'Sales', path: '/departments/sales' },
   { id: 5, name: 'Silicon Element Design', path: '/departments/rd1' },

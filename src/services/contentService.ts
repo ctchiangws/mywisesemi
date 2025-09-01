@@ -12,7 +12,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
   // Departments - updated names and removed specified departments
   'ceo-office': {
     id: 'ceo-office',
-    name: 'CEO Office',
+    name: 'CEO',
     type: 'department',
     lastUpdated: '2025-08-14',
     author: 'Admin',

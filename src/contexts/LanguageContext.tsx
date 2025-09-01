@@ -62,9 +62,13 @@ const translations: Translations = {
     'zh': 'Wisesemi生活',
   },
   // Department translations
+  'dept.ceo': {
+    'en': 'CEO',
+    'zh': '執行長',
+  },
   'dept.ceo-office': {
-    'en': 'CEO Office',
-    'zh': '執行長辦公室',
+    'en': 'CEO',
+    'zh': '執行長',
   },
   'dept.rd1': {
     'en': 'Silicon Element Design',

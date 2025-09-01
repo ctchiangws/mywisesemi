@@ -1,17 +1,12 @@
-
 import { Department, Document, Announcement, Event, Project } from '@/types';
 
 const departmentsData: Department[] = [
   { id: 1, name: 'CEO Office', path: '/departments/ceo-office' },
-  { id: 2, name: 'Human Resources', path: '/departments/hr' },
-  { id: 3, name: 'Finance', path: '/departments/finance' },
-  { id: 4, name: 'Marketing', path: '/departments/marketing' },
-  { id: 5, name: 'RD1', path: '/departments/rd1' },
-  { id: 6, name: 'RD2', path: '/departments/rd2' },
-  { id: 7, name: 'Customer Support', path: '/departments/support' },
+  { id: 5, name: 'Silicon Element Design', path: '/departments/rd1' },
+  { id: 6, name: 'AI System Engineering', path: '/departments/rd2' },
   { id: 8, name: 'Sales', path: '/departments/sales' },
-  { id: 9, name: 'Operations', path: '/departments/operations' },
-  { id: 10, name: 'ITCAD', path: 'http://mywisesemi.cad.wisesemi.com' },
+  { id: 9, name: 'Corporate Operation', path: '/departments/operations' },
+  { id: 10, name: 'Design Infrastructure', path: 'http://mywisesemi.cad.wisesemi.com' },
   { id: 11, name: 'QA', path: 'http://mywisesemi.qa.wisesemi.com' },
 ];
 

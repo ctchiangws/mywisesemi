@@ -66,41 +66,25 @@ const translations: Translations = {
     'en': 'CEO Office',
     'zh': '執行長辦公室',
   },
-  'dept.hr': {
-    'en': 'Human Resources',
-    'zh': '人力資源部',
-  },
-  'dept.finance': {
-    'en': 'Finance',
-    'zh': '財務部',
-  },
-  'dept.marketing': {
-    'en': 'Marketing',
-    'zh': '行銷部',
-  },
   'dept.rd1': {
-    'en': 'RD1',
-    'zh': '研發一部',
+    'en': 'Silicon Element Design',
+    'zh': '矽元件設計部',
   },
   'dept.rd2': {
-    'en': 'RD2',
-    'zh': '研發二部',
-  },
-  'dept.support': {
-    'en': 'Customer Support',
-    'zh': '客戶服務部',
+    'en': 'AI System Engineering',
+    'zh': '人工智慧系統工程部',
   },
   'dept.sales': {
     'en': 'Sales',
     'zh': '業務部',
   },
   'dept.operations': {
-    'en': 'Operations',
-    'zh': '營運部',
+    'en': 'Corporate Operation',
+    'zh': '企業營運部',
   },
   'dept.itcad': {
-    'en': 'ITCAD',
-    'zh': 'IT電腦輔助設計部',
+    'en': 'Design Infrastructure',
+    'zh': '設計架構部',
   },
   'dept.qa': {
     'en': 'QA',

@@ -9,7 +9,7 @@ export interface ContentMetadata {
 
 // Content metadata registry
 export const contentRegistry: Record<string, ContentMetadata> = {
-  // Departments - some with recent updates
+  // Departments - updated names and removed specified departments
   'ceo-office': {
     id: 'ceo-office',
     name: 'CEO Office',
@@ -18,33 +18,9 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     author: 'Admin',
     path: '/data/departments/ceo-office.md'
   },
-  'hr': {
-    id: 'hr',
-    name: 'Human Resources',
-    type: 'department',
-    lastUpdated: '2025-08-14',
-    author: 'Jane Smith',
-    path: '/data/departments/hr.md'
-  },
-  'finance': {
-    id: 'finance',
-    name: 'Finance',
-    type: 'department',
-    lastUpdated: '2025-08-13',
-    author: 'Robert Thompson',
-    path: '/data/departments/finance.md'
-  },
-  'marketing': {
-    id: 'marketing',
-    name: 'Marketing',
-    type: 'department',
-    lastUpdated: '2025-08-14',
-    author: 'Jessica Brown',
-    path: '/data/departments/marketing.md'
-  },
   'rd1': {
     id: 'rd1',
-    name: 'RD1',
+    name: 'Silicon Element Design',
     type: 'department',
     lastUpdated: '2025-08-14',
     author: 'Alex Chen',
@@ -52,27 +28,11 @@ export const contentRegistry: Record<string, ContentMetadata> = {
   },
   'rd2': {
     id: 'rd2',
-    name: 'RD2',
+    name: 'AI System Engineering',
     type: 'department',
     lastUpdated: '2025-08-13',
     author: 'Samantha Wong',
     path: '/data/departments/rd2.md'
-  },
-  'support': {
-    id: 'support',
-    name: 'Customer Support',
-    type: 'department',
-    lastUpdated: '2025-08-14',
-    author: 'Brian Johnson',
-    path: '/data/departments/support.md'
-  },
-  'customer support': {
-    id: 'customer support',
-    name: 'Customer Support',
-    type: 'department',
-    lastUpdated: '2025-08-14',
-    author: 'Brian Johnson',
-    path: '/data/departments/support.md'
   },
   'sales': {
     id: 'sales',
@@ -84,7 +44,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
   },
   'operations': {
     id: 'operations',
-    name: 'Operations',
+    name: 'Corporate Operation',
     type: 'department',
     lastUpdated: '2025-08-13',
     author: 'Matthew Robinson',
@@ -92,7 +52,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
   },
   'itcad': {
     id: 'itcad',
-    name: 'ITCAD',
+    name: 'Design Infrastructure',
     type: 'department',
     lastUpdated: '2025-08-14',
     author: 'IT Department',

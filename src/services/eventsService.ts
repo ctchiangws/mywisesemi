@@ -59,12 +59,14 @@ export const eventsService = {
 
   formatDate(dateStr: string): string {
     // Handle various date formats and convert to YYYY-MM-DD
-    if (dateStr.includes('Sep')) {
+    if (dateStr.includes('Oct')) {
+      return '2025-10-02';
+    } else if (dateStr.includes('Sep')) {
       return '2025-09-13';
     } else if (dateStr.includes('June')) {
       return '2025-06-30';
     } else if (dateStr.includes('May')) {
-      return '2025-05-30';
+      return '2025-05-09';
     } else if (dateStr.includes('March')) {
       return '2025-03-20';
     } else if (dateStr.includes('Jan') && dateStr.includes('20')) {

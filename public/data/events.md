@@ -1,8 +1,9 @@
 # Upcoming Events
+
 ## 2025 中秋烤肉
 **Date: Oct 02, 2025**
 **Time: 17:30**
-**Location: 吃肉肉燒肉專賣店 (竹北市縣政二路462號)**
+**Location: 吃肉肉燒肉專賣店**
 
 ## 智騰半導體 首次員工旅遊
 **Date: Sep. 13/14, 2025**
@@ -18,8 +19,6 @@
 **Date: May 09, 2025**
 **Time: 12:00 PM**
 **Location: 八庵日本料理文興旗艦店**
-
-Annual team building activities to strengthen collaboration and team spirit.
 
 ## 2025 Q1季會與慶生會
 **Date: March 20, 2025**

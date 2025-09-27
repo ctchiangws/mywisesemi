@@ -16,6 +16,7 @@ const documentsData: Document[] = [
   { id: 8, name: '新員工指南', type: 'guide', path: '/documents/new-employee-guide' },
   { id: 6, name: '公司組織圖', type: 'document', path: '/documents/orgchart' },
   { id: 4, name: '產品路線圖', type: 'document', path: '/documents/product-roadmap' },
+  { id: 9, name: '公司行事曆', type: 'document', path: '/documents/company-calendar' },
 ];
 
 const projectsData: Project[] = [

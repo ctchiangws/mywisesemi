@@ -16,6 +16,13 @@ export const useNewContent = (contentId: string, contentType: string) => {
       return false;
     }
 
+    // Check manual mode first
+    if (config.manualMode) {
+      const manualSetting = config.manualBadges[contentId];
+      console.log(`Manual mode enabled - contentId: ${contentId}, manual setting: ${manualSetting}`);
+      return manualSetting === true;
+    }
+
     const metadata = contentService.getContentMetadata(contentId);
     if (!metadata) {
       console.log(`No metadata found for contentId: ${contentId}`);
@@ -63,6 +70,11 @@ export const useNewContentCount = (contentIds: string[], contentType: string) =>
   const count = useMemo(() => {
     if (!config.enabled || !config.contentTypes[contentType as keyof typeof config.contentTypes]) {
       return 0;
+    }
+
+    // Use manual mode if enabled
+    if (config.manualMode) {
+      return contentIds.filter(id => config.manualBadges[id] === true).length;
     }
 
     return contentIds.filter(id => {

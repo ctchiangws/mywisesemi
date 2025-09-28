@@ -152,6 +152,14 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     author: 'Product Team',
     path: '/documents/product-roadmap'
   },
+  'document-9': {
+    id: 'document-9',
+    name: '公司行事曆',
+    type: 'document',
+    lastUpdated: '2024-12-28',
+    author: 'HR Department',
+    path: '/documents/company-calendar'
+  },
 
   // Life in Wisesemi
   'employee-activities': {

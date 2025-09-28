@@ -20,6 +20,10 @@ export interface NewContentConfig {
   showCounters: boolean;
   fadeAfterSeen: boolean;
   
+  // Manual Badge Control
+  manualMode: boolean;
+  manualBadges: Record<string, boolean>;
+  
   // Visual Settings
   badgeStyle: 'pill' | 'dot' | 'outline';
   badgeColor: 'red' | 'blue' | 'green' | 'orange';
@@ -43,6 +47,8 @@ const defaultConfig: NewContentConfig = {
   autoMarkAsSeen: true,
   showCounters: true,
   fadeAfterSeen: true,
+  manualMode: false,
+  manualBadges: {},
   badgeStyle: 'pill',
   badgeColor: 'red',
   showAnimations: true,

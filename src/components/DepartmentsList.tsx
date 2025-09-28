@@ -15,7 +15,16 @@ import { useConfiguration } from '@/contexts/ConfigurationContext';
 
 const DepartmentItem = ({ department }: { department: Department }) => {
   const { t } = useLanguage();
-  const { isNew, markAsSeen } = useNewContent(department.name.toLowerCase(), 'departments');
+  
+  // Extract content ID from path (e.g., "/departments/ceo-office" -> "ceo-office")
+  const getContentId = (path: string) => {
+    if (path.startsWith('/departments/')) {
+      return path.replace('/departments/', '');
+    }
+    return department.name.toLowerCase(); // fallback for external links
+  };
+  
+  const { isNew, markAsSeen } = useNewContent(getContentId(department.path), 'departments');
   
   const getDepartmentName = (dept: Department) => {
     if (dept.name === 'QA') {
@@ -82,12 +91,20 @@ const DepartmentsList = () => {
     queryFn: departmentsApi.getAll,
   });
 
-  const departmentIds = departments.map((d: Department) => d.name.toLowerCase());
+  const departmentIds = departments.map((d: Department) => {
+    if (d.path.startsWith('/departments/')) {
+      return d.path.replace('/departments/', '');
+    }
+    return d.name.toLowerCase(); // fallback for external links
+  });
   const newCount = useNewContentCount(departmentIds, 'departments');
 
   const markAllAsSeen = () => {
     departments.forEach((department: Department) => {
-      lastSeenService.markAsSeen(department.name.toLowerCase(), 'departments');
+      const contentId = department.path.startsWith('/departments/') 
+        ? department.path.replace('/departments/', '')
+        : department.name.toLowerCase();
+      lastSeenService.markAsSeen(contentId, 'departments');
     });
     window.location.reload();
   };

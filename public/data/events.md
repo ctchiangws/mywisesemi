@@ -6,7 +6,7 @@
 **Location: 吃肉肉燒肉專賣店**
 
 ## 智騰半導體 首次員工旅遊
-**Date: Sep. 13/14, 2025**
+**Date: Sep 13, 2025**
 **Time: ALL DAY**
 **Location: 雲品 日月潭**
 

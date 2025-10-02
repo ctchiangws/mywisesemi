@@ -79,13 +79,13 @@ const DailyTools = () => {
       id: 8,
       name: language === 'zh' ? '智騰百科' : 'WiseSemi Wiki',
       type: 'wiki',
-      path: 'https://172.16.0.253/wisewiki'
+      path: 'https://mywisesemi.wiki.wisesemi.com'
     },
     {
       id: 9,
       name: language === 'zh' ? '智騰 AI' : 'WiseSemi AI',
       type: 'ai',
-      path: 'https://mywisesemi.ai.wisesemi.com'
+      path: 'http://wssrv006:8080'
     }
   ];
 

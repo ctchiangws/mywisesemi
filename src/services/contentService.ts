@@ -1,3 +1,6 @@
+import { announcementsService } from './announcementsService';
+import { eventsService } from './eventsService';
+
 export interface ContentMetadata {
   id: string;
   name: string;
@@ -59,57 +62,7 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     path: '/data/departments/itcad.md'
   },
   
-  // Individual Announcements (matching component IDs)
-  'announcement-1': {
-    id: 'announcement-1',
-    name: 'Company Policy Update',
-    type: 'announcement',
-    lastUpdated: '2025-08-14',
-    author: 'HR Department',
-    path: '/data/announcements.md'
-  },
-  'announcement-2': {
-    id: 'announcement-2',
-    name: 'New Office Hours',
-    type: 'announcement',
-    lastUpdated: '2025-08-14',
-    author: 'HR Department',
-    path: '/data/announcements.md'
-  },
-  'announcement-3': {
-    id: 'announcement-3',
-    name: 'IT System Maintenance',
-    type: 'announcement',
-    lastUpdated: '2025-08-13',
-    author: 'IT Department',
-    path: '/data/announcements.md'
-  },
-
-  // Individual Events (matching component IDs)
-  'event-1': {
-    id: 'event-1',
-    name: 'Team Building Event',
-    type: 'event',
-    lastUpdated: '2025-08-14',
-    author: 'Event Coordinator',
-    path: '/data/events.md'
-  },
-  'event-2': {
-    id: 'event-2',
-    name: 'Quarterly All-Hands',
-    type: 'event',
-    lastUpdated: '2025-08-14',
-    author: 'Event Coordinator',
-    path: '/data/events.md'
-  },
-  'event-3': {
-    id: 'event-3',
-    name: 'Holiday Party',
-    type: 'event',
-    lastUpdated: '2025-08-13',
-    author: 'Event Coordinator',
-    path: '/data/events.md'
-  },
+  // Announcements and Events are now dynamically loaded in getAllContent()
 
   // Documents (matching API IDs)
   'document-3': {
@@ -342,7 +295,54 @@ export const contentService = {
     return result;
   },
 
-  getAllContent(): ContentMetadata[] {
-    return Object.values(contentRegistry);
+  async getAllContent(): Promise<ContentMetadata[]> {
+    const staticContent = Object.values(contentRegistry);
+    const dynamicContent: ContentMetadata[] = [];
+
+    try {
+      // Fetch and parse announcements
+      const announcementsResponse = await fetch('/data/announcements.md');
+      if (announcementsResponse.ok) {
+        const announcementsText = await announcementsResponse.text();
+        const announcements = announcementsService.parseMarkdown(announcementsText);
+        
+        // Extract last update date from markdown
+        const lastUpdateMatch = announcementsText.match(/Last update:\s*(.+)/);
+        const lastUpdate = lastUpdateMatch ? lastUpdateMatch[1].trim() : '2025-08-14';
+        
+        announcements.forEach(announcement => {
+          dynamicContent.push({
+            id: `announcement-${announcement.id}`,
+            name: announcement.title,
+            type: 'announcement',
+            lastUpdated: announcement.date || lastUpdate,
+            author: 'HR Department',
+            path: '/data/announcements.md'
+          });
+        });
+      }
+
+      // Fetch and parse events
+      const eventsResponse = await fetch('/data/events.md');
+      if (eventsResponse.ok) {
+        const eventsText = await eventsResponse.text();
+        const events = eventsService.parseMarkdown(eventsText);
+        
+        events.forEach(event => {
+          dynamicContent.push({
+            id: `event-${event.id}`,
+            name: event.title,
+            type: 'event',
+            lastUpdated: event.date || '2025-08-14',
+            author: 'Event Coordinator',
+            path: '/data/events.md'
+          });
+        });
+      }
+    } catch (error) {
+      console.error('Error loading dynamic content:', error);
+    }
+
+    return [...staticContent, ...dynamicContent];
   }
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -6,13 +6,29 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useConfiguration } from '@/contexts/ConfigurationContext';
-import { contentService } from '@/services/contentService';
+import { contentService, ContentMetadata } from '@/services/contentService';
 import { Trash2, RotateCcw, CheckCircle } from 'lucide-react';
 
 const ContentManagementTab = () => {
   const { config, updateConfig } = useConfiguration();
-  
-  const allContent = contentService.getAllContent();
+  const [allContent, setAllContent] = useState<ContentMetadata[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadContent = async () => {
+      setIsLoading(true);
+      try {
+        const content = await contentService.getAllContent();
+        setAllContent(content);
+      } catch (error) {
+        console.error('Error loading content:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadContent();
+  }, []);
   
   // Group content by type
   const contentByType = allContent.reduce((acc, item) => {
@@ -75,6 +91,18 @@ const ContentManagementTab = () => {
   const isManuallyEnabled = (contentId: string) => {
     return config.manualBadges[contentId] === true;
   };
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardContent className="p-6">
+            <p className="text-center text-gray-500">Loading content...</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

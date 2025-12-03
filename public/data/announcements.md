@@ -1,6 +1,6 @@
 
 # Company Announcements
-## Last update: Dec. 3
+## Last update: 2025-12-03
 ---
 ## HR 通知
 **Date: 2025-12-03**

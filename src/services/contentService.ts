@@ -81,29 +81,13 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     author: 'HR Department',
     path: '/documents/employee-faq'
   },
-  'document-8': {
-    id: 'document-8',
-    name: '新員工指南',
-    type: 'guide',
-    lastUpdated: '2025-08-13',
-    author: 'HR Department',
-    path: '/documents/new-employee-guide'
-  },
   'document-6': {
     id: 'document-6',
-    name: '專案提案模板',
+    name: '公司組織圖',
     type: 'document',
     lastUpdated: '2025-08-14',
-    author: 'Project Management',
-    path: '/documents/project-template'
-  },
-  'document-4': {
-    id: 'document-4',
-    name: '產品路線圖',
-    type: 'document',
-    lastUpdated: '2025-08-14',
-    author: 'Product Team',
-    path: '/documents/product-roadmap'
+    author: 'HR Department',
+    path: '/documents/orgchart'
   },
   'document-9': {
     id: 'document-9',
@@ -112,6 +96,22 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     lastUpdated: '2024-12-28',
     author: 'HR Department',
     path: '/documents/company-calendar'
+  },
+  'document-10': {
+    id: 'document-10',
+    name: '員工座位圖',
+    type: 'document',
+    lastUpdated: '2025-12-01',
+    author: 'HR Department',
+    path: '/documents/seating-chart'
+  },
+  'document-8': {
+    id: 'document-8',
+    name: '新員工指南',
+    type: 'guide',
+    lastUpdated: '2025-08-13',
+    author: 'HR Department',
+    path: '/documents/new-employee-guide'
   },
 
   // Life in Wisesemi
@@ -181,54 +181,6 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     author: 'Event Coordinator',
     path: '/data/events.md'
   },
-  'marketing-assets': {
-    id: 'marketing-assets',
-    name: 'Marketing Assets',
-    type: 'document',
-    lastUpdated: '2025-08-13',
-    author: 'Marketing Team',
-    path: '/data/documents/marketing-assets.md'
-  },
-  'employee-handbook': {
-    id: 'employee-handbook',
-    name: 'Employee Handbook',
-    type: 'document',
-    lastUpdated: '2025-08-14',
-    author: 'HR Department',
-    path: '/data/documents/employee-handbook.md'
-  },
-  'project-template': {
-    id: 'project-template',
-    name: 'Project Template',
-    type: 'document',
-    lastUpdated: '2025-08-14',
-    author: 'Project Management',
-    path: '/data/documents/project-template.md'
-  },
-  'product-roadmap': {
-    id: 'product-roadmap',
-    name: 'Product Roadmap',
-    type: 'document',
-    lastUpdated: '2025-08-13',
-    author: 'Product Team',
-    path: '/data/documents/product-roadmap.md'
-  },
-  'new-employee-guide': {
-    id: 'new-employee-guide',
-    name: 'New Employee Guide',
-    type: 'guide',
-    lastUpdated: '2025-08-14',
-    author: 'HR Department',
-    path: '/data/documents/new-employee-guide.md'
-  },
-  'employee-faq': {
-    id: 'employee-faq',
-    name: 'Employee FAQ',
-    type: 'faq',
-    lastUpdated: '2025-08-14',
-    author: 'HR Department',
-    path: '/data/documents/employee-faq.md'
-  }
 };
 
 // Service to load markdown content

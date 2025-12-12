@@ -8,18 +8,23 @@ export const useNewContent = (contentId: string, contentType: string) => {
   const { config } = useConfiguration();
   
   const isNew = useMemo(() => {
-    console.log(`useNewContent - Checking contentId: ${contentId}, contentType: ${contentType}`);
-    console.log(`Config enabled: ${config.enabled}, contentType enabled: ${config.contentTypes[contentType as keyof typeof config.contentTypes]}`);
+    console.log(`[useNewContent] Checking contentId: ${contentId}, contentType: ${contentType}`);
+    console.log(`[useNewContent] Config:`, JSON.stringify({
+      enabled: config.enabled,
+      manualMode: config.manualMode,
+      contentTypes: config.contentTypes,
+      manualBadges: config.manualBadges
+    }));
     
     if (!config.enabled || !config.contentTypes[contentType as keyof typeof config.contentTypes]) {
-      console.log(`Content type ${contentType} is disabled or config is disabled`);
+      console.log(`[useNewContent] Content type ${contentType} is disabled or config is disabled`);
       return false;
     }
 
     // Check manual mode first
     if (config.manualMode) {
       const manualSetting = config.manualBadges[contentId];
-      console.log(`Manual mode enabled - contentId: ${contentId}, manual setting: ${manualSetting}`);
+      console.log(`[useNewContent] Manual mode enabled - contentId: ${contentId}, manual setting: ${manualSetting}, all badges:`, config.manualBadges);
       return manualSetting === true;
     }
 

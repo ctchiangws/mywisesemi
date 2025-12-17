@@ -105,6 +105,14 @@ export const contentRegistry: Record<string, ContentMetadata> = {
     author: 'HR Department',
     path: '/documents/seating-chart'
   },
+  'document-11': {
+    id: 'document-11',
+    name: '員工常用參考文件',
+    type: 'document',
+    lastUpdated: '2025-12-17',
+    author: 'HR Department',
+    path: '/documents/employee-references'
+  },
   'document-8': {
     id: 'document-8',
     name: '新員工指南',

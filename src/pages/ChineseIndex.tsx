@@ -10,6 +10,7 @@ import TopCalendar from '@/components/TopCalendar';
 import ISODocuments from '@/components/ISODocuments';
 import LifeInWisesemi from '@/components/LifeInWisesemi';
 import DailyTools from '@/components/DailyTools';
+import ProjectTools from '@/components/ProjectTools';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ChineseIndex = () => {
@@ -45,6 +46,9 @@ const ChineseIndex = () => {
             </div>
             <div>
               <DailyTools />
+            </div>
+            <div>
+              <ProjectTools />
             </div>
             <div className="flex-1">
               <ISODocuments />

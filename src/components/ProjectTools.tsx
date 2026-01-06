@@ -25,25 +25,29 @@ const ProjectTools = () => {
   const projectTools = [
     {
       id: 1,
-      name: language === 'zh' ? '智騰專案管理' : 'WiseProj',
+      zhName: '智騰專案管理',
+      enName: 'WiseProj',
       type: 'project',
       path: 'http://192.168.30.253:30080/'
     },
     {
       id: 2,
-      name: language === 'zh' ? '智騰版本控制' : 'OAHub',
+      zhName: '智騰版本控制',
+      enName: 'OAHub',
       type: 'version',
       path: 'http://192.168.30.253:3000/'
     },
     {
       id: 3,
-      name: language === 'zh' ? '智騰流程控制' : 'Wisen8n',
+      zhName: '智騰流程控制',
+      enName: 'Wisen8n',
       type: 'workflow',
-      path: 'http://192.168.30.253:5678/'
+      path: 'http://192.168.30.253:3000/'
     },
     {
       id: 4,
-      name: language === 'zh' ? '智騰ERP' : 'WiseOdoo',
+      zhName: '智騰ERP',
+      enName: 'WiseOdoo',
       type: 'erp',
       path: 'http://192.168.30.170:8069/web/login?db=wisesemi'
     }
@@ -59,21 +63,28 @@ const ProjectTools = () => {
       </CardHeader>
       <CardContent>
         <ul className="space-y-2">
-          {projectTools.map((tool) => (
-            <li key={tool.id}>
-              <a
-                href={tool.path}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
-              >
-                {getIcon(tool.type)}
-                <span className="text-gray-700 group-hover:text-wisesemi-dark">
-                  {tool.name}
-                </span>
-              </a>
-            </li>
-          ))}
+          {projectTools.map((tool) => {
+            const label =
+              language === 'zh'
+                ? `${tool.zhName} (${tool.enName})`
+                : `${tool.enName} (${tool.zhName})`;
+
+            return (
+              <li key={tool.id}>
+                <a
+                  href={tool.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
+                >
+                  {getIcon(tool.type)}
+                  <span className="text-gray-700 group-hover:text-wisesemi-dark">
+                    {label}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </CardContent>
     </Card>

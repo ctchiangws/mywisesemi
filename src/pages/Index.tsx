@@ -9,6 +9,7 @@ import SharedDocuments from '@/components/SharedDocuments';
 import TopCalendar from '@/components/TopCalendar';
 import ISODocuments from '@/components/ISODocuments';
 import DailyTools from '@/components/DailyTools';
+import ProjectTools from '@/components/ProjectTools';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index = () => {
@@ -44,6 +45,9 @@ const Index = () => {
             </div>
             <div>
               <DailyTools />
+            </div>
+            <div>
+              <ProjectTools />
             </div>
             <div className="flex-1">
               <ISODocuments />

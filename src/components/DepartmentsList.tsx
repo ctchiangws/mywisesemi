@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Folder } from 'lucide-react';
@@ -9,22 +8,18 @@ import { Department } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
 import NewBadge from '@/components/ui/new-badge';
 import { useNewContent, useNewContentCount } from '@/hooks/useNewContent';
-import { Button } from '@/components/ui/button';
-import { lastSeenService } from '@/services/lastSeenService';
-import { useConfiguration } from '@/contexts/ConfigurationContext';
 
 const DepartmentItem = ({ department }: { department: Department }) => {
   const { t } = useLanguage();
   
-  // Extract content ID from path (e.g., "/departments/ceo-office" -> "ceo-office")
   const getContentId = (path: string) => {
     if (path.startsWith('/departments/')) {
       return path.replace('/departments/', '');
     }
-    return department.name.toLowerCase(); // fallback for external links
+    return department.name.toLowerCase();
   };
   
-  const { isNew, markAsSeen } = useNewContent(getContentId(department.path), 'departments');
+  const { isNew } = useNewContent(getContentId(department.path), 'departments');
   
   const getDepartmentName = (dept: Department) => {
     if (dept.name === 'QA') {
@@ -45,10 +40,6 @@ const DepartmentItem = ({ department }: { department: Department }) => {
     return path.startsWith('http://') || path.startsWith('https://');
   };
 
-  const handleClick = () => {
-    markAsSeen();
-  };
-
   return (
     <li key={department.id}>
       {isExternalLink(department.path) ? (
@@ -57,7 +48,6 @@ const DepartmentItem = ({ department }: { department: Department }) => {
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
-          onClick={handleClick}
         >
           <Folder className="h-4 w-4 mr-2 text-wisesemi-dark group-hover:text-wisesemi" />
           <span className="text-gray-700 group-hover:text-wisesemi-dark flex-grow">
@@ -69,7 +59,6 @@ const DepartmentItem = ({ department }: { department: Department }) => {
         <Link 
           to={department.path}
           className="flex items-center p-2 rounded-md hover:bg-wisesemi-light transition-colors group"
-          onClick={handleClick}
         >
           <Folder className="h-4 w-4 mr-2 text-wisesemi-dark group-hover:text-wisesemi" />
           <span className="text-gray-700 group-hover:text-wisesemi-dark flex-grow">
@@ -84,7 +73,6 @@ const DepartmentItem = ({ department }: { department: Department }) => {
 
 const DepartmentsList = () => {
   const { t } = useLanguage();
-  const { config } = useConfiguration();
   
   const { data: departments = [], isLoading, error } = useQuery({
     queryKey: ['departments'],
@@ -95,19 +83,9 @@ const DepartmentsList = () => {
     if (d.path.startsWith('/departments/')) {
       return d.path.replace('/departments/', '');
     }
-    return d.name.toLowerCase(); // fallback for external links
+    return d.name.toLowerCase();
   });
   const newCount = useNewContentCount(departmentIds, 'departments');
-
-  const markAllAsSeen = () => {
-    departments.forEach((department: Department) => {
-      const contentId = department.path.startsWith('/departments/') 
-        ? department.path.replace('/departments/', '')
-        : department.name.toLowerCase();
-      lastSeenService.markAsSeen(contentId, 'departments');
-    });
-    window.location.reload();
-  };
 
   return (
     <Card className="h-full">
@@ -115,26 +93,21 @@ const DepartmentsList = () => {
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-semibold text-wisesemi-dark flex items-center">
             {t('home.departments')}
-            {config.showCounters && newCount > 0 && (
-              <span className="ml-2 text-sm bg-red-500 text-white px-2 py-1 rounded-full">
+            {newCount > 0 && (
+              <span className="ml-2 text-sm bg-destructive text-destructive-foreground px-2 py-1 rounded-full">
                 {newCount} new
               </span>
             )}
           </CardTitle>
-          {newCount > 0 && (
-            <Button variant="outline" size="sm" onClick={markAllAsSeen}>
-              Mark all read
-            </Button>
-          )}
         </div>
       </CardHeader>
       <CardContent>
         {isLoading ? (
           <div className="flex justify-center py-4">
-            <div className="animate-pulse h-32 w-full bg-gray-200 rounded-md"></div>
+            <div className="animate-pulse h-32 w-full bg-muted rounded-md"></div>
           </div>
         ) : error ? (
-          <div className="text-red-500 text-center py-4">
+          <div className="text-destructive text-center py-4">
             Failed to load departments
           </div>
         ) : (

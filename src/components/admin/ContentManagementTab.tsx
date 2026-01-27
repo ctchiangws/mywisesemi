@@ -7,9 +7,10 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useConfiguration } from '@/contexts/ConfigurationContext';
 import { contentService, ContentMetadata } from '@/services/contentService';
+import { Trash2 } from 'lucide-react';
 
 const ContentManagementTab = () => {
-  const { config, updateConfig } = useConfiguration();
+  const { config, setBadge, clearAllBadges } = useConfiguration();
   const [allContent, setAllContent] = useState<ContentMetadata[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -38,39 +39,24 @@ const ContentManagementTab = () => {
     return acc;
   }, {} as Record<string, typeof allContent>);
 
-  // Sort content types for consistent display
   const sortedTypes = Object.keys(contentByType).sort();
-
-  const handleManualModeToggle = (enabled: boolean) => {
-    updateConfig({ manualMode: enabled });
-  };
-
-  const handleBadgeToggle = (contentId: string, enabled: boolean) => {
-    const newManualBadges = { ...config.manualBadges };
-    if (enabled) {
-      newManualBadges[contentId] = true;
-    } else {
-      delete newManualBadges[contentId];
-    }
-    updateConfig({ manualBadges: newManualBadges });
-  };
 
   const getTypeDisplayName = (type: string) => {
     const typeNames: Record<string, string> = {
-      department: 'Departments',
-      document: 'Documents',
-      announcement: 'Announcements',
-      event: 'Events',
-      life: 'Life in Wisesemi',
-      faq: 'FAQ Documents',
-      guide: 'Guide Documents'
+      department: '部門 Departments',
+      document: '文件 Documents',
+      announcement: '公告 Announcements',
+      event: '活動 Events',
+      life: '生活 Life in Wisesemi',
     };
     return typeNames[type] || type.charAt(0).toUpperCase() + type.slice(1);
   };
 
-  const isManuallyEnabled = (contentId: string) => {
+  const isMarkedNew = (contentId: string) => {
     return config.manualBadges[contentId] === true;
   };
+
+  const newBadgeCount = Object.keys(config.manualBadges).filter(key => config.manualBadges[key]).length;
 
   if (isLoading) {
     return (
@@ -86,58 +72,44 @@ const ContentManagementTab = () => {
 
   return (
     <div className="space-y-6">
+      {/* Header with Clear All */}
       <Card>
         <CardHeader>
-          <CardTitle>Content Badge Management</CardTitle>
-          <CardDescription>
-            Control which content items show "New" badges manually or use automatic date-based detection.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="manual-mode"
-              checked={config.manualMode}
-              onCheckedChange={handleManualModeToggle}
-            />
-            <Label htmlFor="manual-mode">
-              Enable Manual Badge Control
-            </Label>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle>NEW 標籤管理</CardTitle>
+              <CardDescription>
+                手動設定哪些項目顯示 NEW 標籤。Toggle switches to mark items as NEW.
+              </CardDescription>
+            </div>
+            <div className="flex items-center gap-3">
+              <Badge variant="secondary" className="text-sm">
+                {newBadgeCount} items marked NEW
+              </Badge>
+              {newBadgeCount > 0 && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={clearAllBadges}
+                  className="text-red-600 hover:text-red-700"
+                >
+                  <Trash2 className="w-4 h-4 mr-1" />
+                  Clear All
+                </Button>
+              )}
+            </div>
           </div>
-          
-          {config.manualMode && (
-            <div className="p-3 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-200 dark:border-blue-800">
-              <p className="text-sm text-blue-800 dark:text-blue-200">
-                <strong>Manual Mode:</strong> Toggle the switches below to mark items as NEW. Settings are saved to browser storage.
-              </p>
-            </div>
-          )}
-
-          {!config.manualMode && (
-            <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                Automatic mode is enabled. Badges appear based on content update dates and user viewing history.
-              </p>
-            </div>
-          )}
-        </CardContent>
+        </CardHeader>
       </Card>
 
-      {config.manualMode && (
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle>Manual Badge Settings</CardTitle>
-                <CardDescription>
-                  Toggle switches to mark items as NEW. Changes take effect immediately.
-                </CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-6">
-              {sortedTypes.map((type) => (
+      {/* Content Items by Type */}
+      <Card>
+        <CardContent className="pt-6">
+          <div className="space-y-6">
+            {sortedTypes.map((type) => {
+              const typeNewCount = contentByType[type].filter(item => isMarkedNew(item.id)).length;
+              
+              return (
                 <div key={type} className="space-y-3">
                   <div className="flex items-center gap-2">
                     <h4 className="font-medium text-sm">
@@ -146,19 +118,21 @@ const ContentManagementTab = () => {
                     <Badge variant="outline" className="text-xs">
                       {contentByType[type].length} items
                     </Badge>
-                    <Badge variant="secondary" className="text-xs">
-                      {contentByType[type].filter(item => isManuallyEnabled(item.id)).length} marked NEW
-                    </Badge>
+                    {typeNewCount > 0 && (
+                      <Badge variant="destructive" className="text-xs">
+                        {typeNewCount} NEW
+                      </Badge>
+                    )}
                   </div>
                   
-                  <div className="grid gap-3">
+                  <div className="grid gap-2">
                     {contentByType[type].map((item) => (
                       <div
                         key={item.id}
                         className={`flex items-center justify-between p-3 border rounded-lg transition-colors ${
-                          isManuallyEnabled(item.id) 
+                          isMarkedNew(item.id) 
                             ? 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800' 
-                            : 'bg-gray-50 dark:bg-gray-800'
+                            : 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700'
                         }`}
                       >
                         <div className="flex-1 min-w-0">
@@ -166,23 +140,23 @@ const ContentManagementTab = () => {
                             <p className="font-medium text-sm truncate">
                               {item.name}
                             </p>
-                            {isManuallyEnabled(item.id) && (
+                            {isMarkedNew(item.id) && (
                               <Badge variant="destructive" className="text-xs">
                                 NEW
                               </Badge>
                             )}
                           </div>
-                          <p className="text-xs text-muted-foreground mt-1">
+                          <p className="text-xs text-muted-foreground mt-0.5">
                             ID: {item.id}
                           </p>
                         </div>
-                        <div className="flex items-center space-x-2 ml-4">
+                        <div className="flex items-center gap-3 ml-4">
                           <Switch
-                            checked={isManuallyEnabled(item.id)}
-                            onCheckedChange={(checked) => handleBadgeToggle(item.id, checked)}
+                            checked={isMarkedNew(item.id)}
+                            onCheckedChange={(checked) => setBadge(item.id, checked)}
                           />
-                          <Label className="text-xs text-muted-foreground min-w-[50px]">
-                            {isManuallyEnabled(item.id) ? 'NEW' : 'Not New'}
+                          <Label className="text-xs text-muted-foreground w-12">
+                            {isMarkedNew(item.id) ? 'NEW' : 'Off'}
                           </Label>
                         </div>
                       </div>
@@ -193,40 +167,29 @@ const ContentManagementTab = () => {
                     <Separator className="mt-4" />
                   )}
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+              );
+            })}
+          </div>
+        </CardContent>
+      </Card>
 
+      {/* Statistics */}
       <Card>
         <CardHeader>
-          <CardTitle>Content Statistics</CardTitle>
-          <CardDescription>
-            Overview of all content items in the system.
-          </CardDescription>
+          <CardTitle className="text-base">統計 Statistics</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {sortedTypes.map((type) => {
-              const manualNewCount = contentByType[type].filter(item => 
-                config.manualMode && isManuallyEnabled(item.id)
-              ).length;
+              const typeNewCount = contentByType[type].filter(item => isMarkedNew(item.id)).length;
               
               return (
-                <div
-                  key={type}
-                  className="p-3 border rounded-lg text-center"
-                >
-                  <p className="font-medium text-lg">
-                    {contentByType[type].length}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    {getTypeDisplayName(type)}
-                  </p>
-                  {config.manualMode && manualNewCount > 0 && (
+                <div key={type} className="p-3 border rounded-lg text-center">
+                  <p className="font-medium text-lg">{contentByType[type].length}</p>
+                  <p className="text-xs text-gray-600">{getTypeDisplayName(type)}</p>
+                  {typeNewCount > 0 && (
                     <Badge variant="destructive" className="text-xs mt-1">
-                      {manualNewCount} New
+                      {typeNewCount} NEW
                     </Badge>
                   )}
                 </div>

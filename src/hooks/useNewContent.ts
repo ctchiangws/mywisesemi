@@ -1,74 +1,29 @@
-
 import { useMemo } from 'react';
 import { useConfiguration } from '@/contexts/ConfigurationContext';
-import { lastSeenService } from '@/services/lastSeenService';
-import { contentService } from '@/services/contentService';
 
+/**
+ * Simple hook to check if content should show NEW badge
+ * Uses manual badge settings from configuration only
+ */
 export const useNewContent = (contentId: string, contentType: string) => {
   const { config } = useConfiguration();
   
   const isNew = useMemo(() => {
-    console.log(`[useNewContent] Checking contentId: ${contentId}, contentType: ${contentType}`);
-    console.log(`[useNewContent] Config:`, JSON.stringify({
-      enabled: config.enabled,
-      manualMode: config.manualMode,
-      contentTypes: config.contentTypes,
-      manualBadges: config.manualBadges
-    }));
-    
+    // Check if feature is enabled and content type is active
     if (!config.enabled || !config.contentTypes[contentType as keyof typeof config.contentTypes]) {
-      console.log(`[useNewContent] Content type ${contentType} is disabled or config is disabled`);
       return false;
     }
 
-    // Check manual mode first
-    if (config.manualMode) {
-      const manualSetting = config.manualBadges[contentId];
-      console.log(`[useNewContent] Manual mode enabled - contentId: ${contentId}, manual setting: ${manualSetting}, all badges:`, config.manualBadges);
-      return manualSetting === true;
-    }
-
-    const metadata = contentService.getContentMetadata(contentId);
-    if (!metadata) {
-      console.log(`No metadata found for contentId: ${contentId}`);
-      return false;
-    }
-
-    console.log(`Metadata found: ${JSON.stringify(metadata)}`);
-    
-    const lastUpdated = new Date(metadata.lastUpdated).getTime();
-    const lastSeen = lastSeenService.getLastSeen(contentId);
-    const now = Date.now();
-    
-    console.log(`Last updated: ${new Date(lastUpdated).toISOString()}`);
-    console.log(`Last seen: ${lastSeen ? lastSeen.toISOString() : 'never'}`);
-    console.log(`Now: ${new Date(now).toISOString()}`);
-    
-    // If never seen, check if it's within the persistence window
-    if (!lastSeen) {
-      const persistenceWindow = config.defaultPersistenceDays * 24 * 60 * 60 * 1000;
-      const isWithinWindow = (now - lastUpdated) <= persistenceWindow;
-      console.log(`Never seen - persistence window: ${config.defaultPersistenceDays} days, within window: ${isWithinWindow}`);
-      return isWithinWindow;
-    }
-    
-    // If seen, check if content was updated after last seen
-    const wasUpdatedAfterSeen = lastUpdated > lastSeen.getTime();
-    console.log(`Was updated after last seen: ${wasUpdatedAfterSeen}`);
-    return wasUpdatedAfterSeen;
+    // Simply check if this content ID is marked as NEW in manual badges
+    return config.manualBadges[contentId] === true;
   }, [contentId, contentType, config]);
 
-  const markAsSeen = () => {
-    console.log(`Marking as seen: ${contentId}, auto mark: ${config.autoMarkAsSeen}`);
-    if (config.autoMarkAsSeen) {
-      lastSeenService.markAsSeen(contentId, contentType);
-    }
-  };
-
-  console.log(`useNewContent result for ${contentId}: isNew = ${isNew}`);
-  return { isNew, markAsSeen };
+  return { isNew };
 };
 
+/**
+ * Hook to count how many items in a list have NEW badges
+ */
 export const useNewContentCount = (contentIds: string[], contentType: string) => {
   const { config } = useConfiguration();
   
@@ -77,26 +32,7 @@ export const useNewContentCount = (contentIds: string[], contentType: string) =>
       return 0;
     }
 
-    // Use manual mode if enabled
-    if (config.manualMode) {
-      return contentIds.filter(id => config.manualBadges[id] === true).length;
-    }
-
-    return contentIds.filter(id => {
-      const metadata = contentService.getContentMetadata(id);
-      if (!metadata) return false;
-
-      const lastUpdated = new Date(metadata.lastUpdated).getTime();
-      const lastSeen = lastSeenService.getLastSeen(id);
-      
-      if (!lastSeen) {
-        const now = Date.now();
-        const persistenceWindow = config.defaultPersistenceDays * 24 * 60 * 60 * 1000;
-        return (now - lastUpdated) <= persistenceWindow;
-      }
-      
-      return lastUpdated > lastSeen.getTime();
-    }).length;
+    return contentIds.filter(id => config.manualBadges[id] === true).length;
   }, [contentIds, contentType, config]);
 
   return count;

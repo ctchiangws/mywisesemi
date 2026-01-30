@@ -76,12 +76,6 @@ const DailyTools = () => {
       path: 'https://172.16.0.253/wsnote'
     },
     {
-      id: 8,
-      name: language === 'zh' ? '智騰百科' : 'WiseSemi Wiki',
-      type: 'wiki',
-      path: 'https://mywisesemi.wiki.wisesemi.com'
-    },
-    {
       id: 9,
       name: language === 'zh' ? '智騰 AI' : 'WiseSemi AI',
       type: 'ai',

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { FolderGit2, GitBranch, Workflow, Package } from 'lucide-react';
+import { FolderGit2, GitBranch, Workflow, Package, BookOpen } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -14,6 +14,8 @@ const getIcon = (type: string) => {
       return <Workflow className="h-4 w-4 mr-2 text-purple-500" />;
     case 'erp':
       return <Package className="h-4 w-4 mr-2 text-orange-500" />;
+    case 'wiki':
+      return <BookOpen className="h-4 w-4 mr-2 text-teal-500" />;
     default:
       return <FolderGit2 className="h-4 w-4 mr-2 text-blue-500" />;
   }
@@ -50,6 +52,13 @@ const ProjectTools = () => {
       enName: 'WiseOdoo',
       type: 'erp',
       path: 'http://192.168.30.170:8069/web/login?db=wisesemi'
+    },
+    {
+      id: 5,
+      zhName: '智騰百科',
+      enName: 'WiseSemi Wiki',
+      type: 'wiki',
+      path: 'https://mywisesemi.wiki.wisesemi.com'
     }
   ];
 

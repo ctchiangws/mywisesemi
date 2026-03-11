@@ -1,6 +1,11 @@
 # Upcoming Events
 
 ## 2026 智騰尾牙
+**Date: Feb 26, 2026**
+**Time: 09:00**
+**Location: 開工拜拜 尊煌春酒**
+
+## 2026 智騰尾牙
 **Date: Jan 30, 2026**
 **Time: 18:00**
 **Location: 好樂迪KTV**

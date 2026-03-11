@@ -1,6 +1,6 @@
 # Upcoming Events
 
-## 2026 智騰尾牙
+## 2026 智騰開工春酒
 **Date: Feb 26, 2026**
 **Time: 09:00**
 **Location: 開工拜拜 尊煌春酒**

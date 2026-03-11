@@ -1,6 +1,6 @@
 
 # Company Announcements
-## Last update: 2026-01-06
+## Last update: 2026-03-11
 ---
 ## HR 通知
 **Date: 2026-01-06**

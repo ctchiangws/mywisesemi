@@ -26,11 +26,11 @@ const ProjectTools = () => {
   
   const projectTools = [
     {
-      id: 1,
-      zhName: '智騰專案管理',
-      enName: 'WiseProj',
-      type: 'project',
-      path: 'http://192.168.30.253:30080/'
+      id: 5,
+      zhName: '智騰知識庫',
+      enName: 'WiseWiki',
+      type: 'wiki',
+      path: 'https://oawiki.wisesemi.com'
     },
     {
       id: 2,
@@ -40,11 +40,11 @@ const ProjectTools = () => {
       path: 'http://192.168.30.253:3000/'
     },
     {
-      id: 3,
-      zhName: '智騰流程控制',
-      enName: 'Wisen8n',
-      type: 'workflow',
-      path: 'http://192.168.30.253:3000/'
+      id: 1,
+      zhName: '智騰專案管理',
+      enName: 'WiseProj',
+      type: 'project',
+      path: 'http://192.168.30.253:30080/'
     },
     {
       id: 4,
@@ -54,11 +54,11 @@ const ProjectTools = () => {
       path: 'http://192.168.30.170:8069/web/login?db=wisesemi'
     },
     {
-      id: 5,
-      zhName: '智騰百科',
-      enName: 'WiseSemi Wiki',
-      type: 'wiki',
-      path: 'https://mywisesemi.wiki.wisesemi.com'
+      id: 3,
+      zhName: '智騰流程控制',
+      enName: 'Wisen8n',
+      type: 'workflow',
+      path: 'http://192.168.30.253:3000/'
     }
   ];
 

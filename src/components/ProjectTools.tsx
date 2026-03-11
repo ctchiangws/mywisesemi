@@ -55,10 +55,10 @@ const ProjectTools = () => {
     },
     {
       id: 5,
-      zhName: '智騰百科',
-      enName: 'WiseSemi Wiki',
+      zhName: '智騰知識庫',
+      enName: 'WiseWiki',
       type: 'wiki',
-      path: 'https://mywisesemi.wiki.wisesemi.com'
+      path: 'https://oawiki.wisesemi.com'
     }
   ];
 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Clock } from 'lucide-react';
@@ -7,22 +6,14 @@ import { eventsApi } from '@/services/api';
 import { Event } from '@/types';
 import NewBadge from '@/components/ui/new-badge';
 import { useNewContent, useNewContentCount } from '@/hooks/useNewContent';
-import { Button } from '@/components/ui/button';
-import { lastSeenService } from '@/services/lastSeenService';
-import { useConfiguration } from '@/contexts/ConfigurationContext';
 
 const EventItem = ({ event }: { event: Event }) => {
-  const { isNew, markAsSeen } = useNewContent(`event-${event.id}`, 'events');
-  
-  const handleClick = () => {
-    markAsSeen();
-  };
+  const { isNew } = useNewContent(`event-${event.id}`, 'events');
 
   return (
     <div 
       key={event.id} 
-      className="flex items-start p-2 border-l-2 border-wisesemi rounded-sm bg-white hover:bg-wisesemi-light/50 transition-colors cursor-pointer"
-      onClick={handleClick}
+      className="flex items-start p-2 border-l-2 border-wisesemi rounded-sm bg-white hover:bg-wisesemi-light/50 transition-colors"
     >
       <div className="flex-shrink-0 bg-wisesemi text-white text-xs p-2 rounded text-center mr-3 w-14">
         <div className="font-bold">{event.date.split('-')[2]}</div>
@@ -43,7 +34,6 @@ const EventItem = ({ event }: { event: Event }) => {
 };
 
 const EventCalendar = () => {
-  const { config } = useConfiguration();
   const { data: events = [], isLoading, error } = useQuery({
     queryKey: ['events'],
     queryFn: eventsApi.getAll
@@ -52,13 +42,6 @@ const EventCalendar = () => {
   const eventIds = events.map((e: Event) => `event-${e.id}`);
   const newCount = useNewContentCount(eventIds, 'events');
 
-  const markAllAsSeen = () => {
-    events.forEach((event: Event) => {
-      lastSeenService.markAsSeen(`event-${event.id}`, 'events');
-    });
-    window.location.reload();
-  };
-
   return (
     <Card className="h-full">
       <CardHeader className="pb-2">
@@ -66,28 +49,23 @@ const EventCalendar = () => {
           <CardTitle className="text-lg font-semibold text-wisesemi-dark flex items-center">
             <Calendar className="h-5 w-5 mr-2 text-wisesemi" />
             Upcoming Events
-            {config.showCounters && newCount > 0 && (
-              <span className="ml-2 text-sm bg-red-500 text-white px-2 py-1 rounded-full">
+            {newCount > 0 && (
+              <span className="ml-2 text-sm bg-destructive text-destructive-foreground px-2 py-1 rounded-full">
                 {newCount} new
               </span>
             )}
           </CardTitle>
-          {newCount > 0 && (
-            <Button variant="outline" size="sm" onClick={markAllAsSeen}>
-              Mark all read
-            </Button>
-          )}
         </div>
       </CardHeader>
       <CardContent>
         {isLoading ? (
           <div className="grid gap-3">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="animate-pulse flex items-start p-2 h-16 bg-gray-200 rounded-sm"></div>
+              <div key={i} className="animate-pulse flex items-start p-2 h-16 bg-muted rounded-sm"></div>
             ))}
           </div>
         ) : error ? (
-          <div className="text-red-500 text-center py-4">
+          <div className="text-destructive text-center py-4">
             Failed to load events
           </div>
         ) : (

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, FileSpreadsheet, FileImage, HelpCircle, UserPlus } from 'lucide-react';
@@ -9,9 +8,6 @@ import { Document } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
 import NewBadge from '@/components/ui/new-badge';
 import { useNewContent, useNewContentCount } from '@/hooks/useNewContent';
-import { Button } from '@/components/ui/button';
-import { lastSeenService } from '@/services/lastSeenService';
-import { useConfiguration } from '@/contexts/ConfigurationContext';
 
 const getIcon = (type: string) => {
   switch (type) {
@@ -33,11 +29,7 @@ const isExternalLink = (path: string) => {
 };
 
 const DocumentItem = ({ document }: { document: Document }) => {
-  const { isNew, markAsSeen } = useNewContent(`document-${document.id}`, 'documents');
-  
-  const handleClick = () => {
-    markAsSeen();
-  };
+  const { isNew } = useNewContent(`document-${document.id}`, 'documents');
 
   return (
     <li key={document.id}>
@@ -47,7 +39,6 @@ const DocumentItem = ({ document }: { document: Document }) => {
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
-          onClick={handleClick}
         >
           {getIcon(document.type)}
           <span className="text-gray-700 group-hover:text-wisesemi-dark flex-grow">
@@ -59,7 +50,6 @@ const DocumentItem = ({ document }: { document: Document }) => {
         <Link
           to={document.path}
           className="flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors group"
-          onClick={handleClick}
         >
           {getIcon(document.type)}
           <span className="text-gray-700 group-hover:text-wisesemi-dark flex-grow">
@@ -74,7 +64,6 @@ const DocumentItem = ({ document }: { document: Document }) => {
 
 const SharedDocuments = () => {
   const { t } = useLanguage();
-  const { config } = useConfiguration();
   
   const { data: documents = [], isLoading } = useQuery({
     queryKey: ['documents'],
@@ -84,37 +73,25 @@ const SharedDocuments = () => {
   const documentIds = documents.map((d: Document) => `document-${d.id}`);
   const newCount = useNewContentCount(documentIds, 'documents');
 
-  const markAllAsSeen = () => {
-    documents.forEach((document: Document) => {
-      lastSeenService.markAsSeen(`document-${document.id}`, 'documents');
-    });
-    window.location.reload();
-  };
-
   return (
     <Card className="h-full">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-semibold text-wisesemi-dark flex items-center">
             {t('home.shared_documents')}
-            {config.showCounters && newCount > 0 && (
-              <span className="ml-2 text-sm bg-red-500 text-white px-2 py-1 rounded-full">
+            {newCount > 0 && (
+              <span className="ml-2 text-sm bg-destructive text-destructive-foreground px-2 py-1 rounded-full">
                 {newCount} new
               </span>
             )}
           </CardTitle>
-          {newCount > 0 && (
-            <Button variant="outline" size="sm" onClick={markAllAsSeen}>
-              Mark all read
-            </Button>
-          )}
         </div>
       </CardHeader>
       <CardContent>
         {isLoading ? (
           <div className="animate-pulse space-y-2">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="h-10 bg-gray-200 rounded-md"></div>
+              <div key={i} className="h-10 bg-muted rounded-md"></div>
             ))}
           </div>
         ) : (

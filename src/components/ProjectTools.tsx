@@ -30,7 +30,7 @@ const ProjectTools = () => {
       zhName: '智騰知識庫',
       enName: 'WiseWiki',
       type: 'wiki',
-      path: 'https://oawiki.wisesemi.com'
+      path: 'http://192.168.30.253:3540/zh-tw/home'
     },
     {
       id: 2,
@@ -44,7 +44,7 @@ const ProjectTools = () => {
       zhName: '智騰專案管理',
       enName: 'WiseProj',
       type: 'project',
-      path: 'http://192.168.30.253:8080/'
+      path: 'http://172.16.0.209:8002'
     },
     {
       id: 4,
@@ -66,6 +66,20 @@ const ProjectTools = () => {
       enName: 'WiseFlow',
       type: 'workflow',
       path: 'http://192.168.30.253:8080/'
+    },
+    {
+      id: 7,
+      zhName: '智騰文管中心',
+      enName: 'WiseDCC',
+      type: 'project',
+      path: 'http://172.16.0.209:8006'
+    },
+    {
+      id: 8,
+      zhName: '智騰表單中心',
+      enName: 'WiseForm',
+      type: 'project',
+      path: 'http://172.16.0.209:8080'
     }
   ];
 

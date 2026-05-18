@@ -61,13 +61,6 @@ const ProjectTools = () => {
       path: 'https://oan8n.wisesemi.com'
     },
     {
-      id: 6,
-      zhName: '智騰工作流',
-      enName: 'WiseFlow',
-      type: 'workflow',
-      path: 'http://192.168.30.253:8080/'
-    },
-    {
       id: 7,
       zhName: '智騰文管中心',
       enName: 'WiseDCC',

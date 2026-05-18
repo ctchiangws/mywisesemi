@@ -18,6 +18,7 @@ const documentsData: Document[] = [
   { id: 10, name: '員工座位圖', type: 'document', path: '/documents/seating-chart' },
   { id: 11, name: '員工常用參考文件', type: 'document', path: '/documents/employee-references' },
   { id: 8, name: '新員工指南', type: 'guide', path: '/documents/new-employee-guide' },
+  { id: 12, name: '性騷擾防治措施', type: 'document', path: '/documents/harassment-prevention' },
 ];
 
 const projectsData: Project[] = [

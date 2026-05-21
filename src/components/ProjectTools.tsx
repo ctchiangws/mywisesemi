@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { FolderGit2, GitBranch, Workflow, Package, BookOpen } from 'lucide-react';
+import { FolderGit2, GitBranch, Workflow, Package, BookOpen, Mail } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -16,6 +16,8 @@ const getIcon = (type: string) => {
       return <Package className="h-4 w-4 mr-2 text-orange-500" />;
     case 'wiki':
       return <BookOpen className="h-4 w-4 mr-2 text-teal-500" />;
+    case 'mail':
+      return <Mail className="h-4 w-4 mr-2 text-red-500" />;
     default:
       return <FolderGit2 className="h-4 w-4 mr-2 text-blue-500" />;
   }
@@ -72,7 +74,21 @@ const ProjectTools = () => {
       zhName: '智騰表單中心',
       enName: 'WiseForm',
       type: 'project',
-      path: 'http://172.16.0.209:8080'
+      path: 'http://172.16.0.209:8080/jw'
+    },
+    {
+      id: 9,
+      zhName: '智騰文管中心 2',
+      enName: 'WiseDCC 2',
+      type: 'project',
+      path: 'http://172.16.0.209:8008'
+    },
+    {
+      id: 10,
+      zhName: '智騰郵件系統',
+      enName: 'Wisemail',
+      type: 'mail',
+      path: 'http://172.16.0.209:8007'
     }
   ];
 

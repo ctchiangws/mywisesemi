@@ -42,6 +42,13 @@ const ProjectTools = () => {
       path: 'http://192.168.30.253:3540/zh-tw/home'
     },
     {
+      id: 11,
+      zhName: '智騰AI知識庫',
+      enName: 'WiseAIWiki',
+      type: 'wiki',
+      path: 'http://192.168.30.170/wiki'
+    },
+    {
       id: 2,
       zhName: '智騰版本控制',
       enName: 'OAHub',

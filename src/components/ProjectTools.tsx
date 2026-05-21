@@ -28,6 +28,13 @@ const ProjectTools = () => {
   
   const projectTools = [
     {
+      id: 1,
+      zhName: '智騰專案管理',
+      enName: 'WiseProj',
+      type: 'project',
+      path: 'http://172.16.0.209:8002'
+    },
+    {
       id: 5,
       zhName: '智騰知識庫',
       enName: 'WiseWiki',
@@ -42,13 +49,6 @@ const ProjectTools = () => {
       path: 'http://192.168.30.253:3000/'
     },
     {
-      id: 1,
-      zhName: '智騰專案管理',
-      enName: 'WiseProj',
-      type: 'project',
-      path: 'http://172.16.0.209:8002'
-    },
-    {
       id: 4,
       zhName: '智騰ERP',
       enName: 'WiseOdoo',
@@ -56,11 +56,11 @@ const ProjectTools = () => {
       path: 'http://192.168.30.170:8069/web/login?db=wisesemi'
     },
     {
-      id: 3,
-      zhName: '智騰流程控制',
-      enName: 'Wisen8n',
-      type: 'workflow',
-      path: 'https://oan8n.wisesemi.com'
+      id: 8,
+      zhName: '智騰表單中心',
+      enName: 'WiseForm',
+      type: 'project',
+      path: 'http://172.16.0.209:8080/jw'
     },
     {
       id: 7,
@@ -68,13 +68,6 @@ const ProjectTools = () => {
       enName: 'WiseDCC',
       type: 'project',
       path: 'http://172.16.0.209:8006'
-    },
-    {
-      id: 8,
-      zhName: '智騰表單中心',
-      enName: 'WiseForm',
-      type: 'project',
-      path: 'http://172.16.0.209:8080/jw'
     },
     {
       id: 9,
@@ -89,6 +82,13 @@ const ProjectTools = () => {
       enName: 'Wisemail',
       type: 'mail',
       path: 'http://172.16.0.209:8007'
+    },
+    {
+      id: 3,
+      zhName: '智騰流程控制',
+      enName: 'Wisen8n',
+      type: 'workflow',
+      path: 'https://oan8n.wisesemi.com'
     }
   ];
 

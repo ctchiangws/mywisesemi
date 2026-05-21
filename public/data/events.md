@@ -1,5 +1,10 @@
 # Upcoming Events
 
+## 2026智騰員工健康檢查
+**Date: Jul 02, 2026**
+**Time: 10:40 AM**
+**Location: 智騰半導體股份有限公司 四樓**
+
 ## 2026 智騰開工春酒
 **Date: Feb 26, 2026**
 **Time: 09:00**
@@ -40,9 +45,6 @@
 **Time: 18:00 AM**
 **Location: Roast 初熟成牛排**
 
-## 智騰半導體 首次員工教育訓練
-**Date: Jan 07, 2025**
-**Time: 13:00 AM**
-**Location: 肯沃商務中心**
+
 
 Professional development workshop on new technologies and best practices.

@@ -25,7 +25,7 @@ const getIcon = (type: string) => {
 };
 
 const isExternalLink = (path: string) => {
-  return path.startsWith('http://') || path.startsWith('https://');
+  return path.startsWith('http://') || path.startsWith('https://') || path.endsWith('.pdf');
 };
 
 const DocumentItem = ({ document }: { document: Document }) => {

@@ -96,7 +96,15 @@ const ProjectTools = () => {
       enName: 'Wisen8n',
       type: 'workflow',
       path: 'https://oan8n.wisesemi.com'
+    },
+    {
+      id: 12,
+      zhName: '智騰IT中心',
+      enName: 'WiseIT',
+      type: 'project',
+      path: '/data/it-dashboard.md'
     }
+
   ];
 
   return (

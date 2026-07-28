@@ -102,7 +102,7 @@ const ProjectTools = () => {
       zhName: '智騰IT中心',
       enName: 'WiseIT',
       type: 'project',
-      path: '/data/it-dashboard.md'
+      path: 'http://172.16.0.209:8010'
     }
 
   ];

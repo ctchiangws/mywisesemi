@@ -46,3 +46,28 @@ export interface DailyTool {
   type: string;
   path: string;
 }
+
+export interface BpmInboxItem {
+  step_id: number;
+  request_id: string;
+  serial: string | null;
+  form_name: string;
+  applicant: string;
+  step_name: string;
+  submitted_at: string | null;
+  url: string;
+}
+
+export interface BpmRequestItem {
+  request_id: string;
+  serial: string | null;
+  form_name: string;
+  status: string;
+  status_display: string;
+  created_at: string;
+  url: string;
+}
+
+export type BpmSummary<T> =
+  | { authenticated: true; user: string; count: number; items: T[] }
+  | { authenticated: false };

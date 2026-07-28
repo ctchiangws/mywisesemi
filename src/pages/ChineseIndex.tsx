@@ -11,6 +11,7 @@ import ISODocuments from '@/components/ISODocuments';
 import LifeInWisesemi from '@/components/LifeInWisesemi';
 import DailyTools from '@/components/DailyTools';
 import ProjectTools from '@/components/ProjectTools';
+import WiseFormSummary from '@/components/WiseFormSummary';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ChineseIndex = () => {
@@ -42,6 +43,7 @@ const ChineseIndex = () => {
           {/* Right Column - Calendar, Daily Tools, ISO 9001, Life */}
           <div className="flex flex-col space-y-6">
             <TopCalendar />
+            <WiseFormSummary />
             <DailyTools />
             <ISODocuments />
             <LifeInWisesemi />

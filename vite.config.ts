@@ -8,6 +8,13 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      "/bpm-api": {
+        target: "http://172.16.0.209:8888",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/bpm-api/, "/api"),
+      },
+    },
   },
   plugins: [
     react(),

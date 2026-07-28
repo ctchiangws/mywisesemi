@@ -64,10 +64,10 @@ const ProjectTools = () => {
     },
     {
       id: 8,
-      zhName: '智騰表單中心',
+      zhName: '智騰簽核系統',
       enName: 'WiseForm',
       type: 'project',
-      path: 'http://172.16.0.209:8080/jw'
+      path: 'http://172.16.0.209:8888'
     },
     {
       id: 7,

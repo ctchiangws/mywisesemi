@@ -10,6 +10,7 @@ import TopCalendar from '@/components/TopCalendar';
 import ISODocuments from '@/components/ISODocuments';
 import DailyTools from '@/components/DailyTools';
 import ProjectTools from '@/components/ProjectTools';
+import WiseFormSummary from '@/components/WiseFormSummary';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index = () => {
@@ -42,6 +43,9 @@ const Index = () => {
           <div className="flex flex-col space-y-6">
             <div>
               <TopCalendar />
+            </div>
+            <div>
+              <WiseFormSummary />
             </div>
             <div>
               <DailyTools />

@@ -1,5 +1,20 @@
 # Upcoming Events
 
+## 智騰半導體 員工旅遊
+**Date: Nov 7-9, 2026**
+**Time: ALL DAY**
+**Location: 花蓮**
+
+## 2025 中秋餐敘
+**Date: Sep 23, 2026**
+**Time: 17:30**
+**Location: 新橋**
+
+## 中元普渡拜拜
+**Date: Aug 26, 2026**
+**Time: 14:30 **
+**Location:  智騰半導體股份有限公司**
+
 ## 2026智騰員工健康檢查
 **Date: Jul 02, 2026**
 **Time: 10:40 AM**
@@ -20,30 +35,18 @@
 **Time: 17:30**
 **Location: 吃肉肉燒肉專賣店**
 
-## 智騰半導體 首次員工旅遊
-**Date: Sep 13, 2025**
-**Time: ALL DAY**
-**Location: 雲品 日月潭**
 
 ## 智騰半導體 2025 股東會
 **Date: June 30, 2025**
 **Time: 10:00 AM**
 **Location: New Conference Room**
 
-## 2025 Q2季會與慶生會
-**Date: May 09, 2025**
-**Time: 12:00 PM**
-**Location: 八庵日本料理文興旗艦店**
 
-## 2025 Q1季會與慶生會
-**Date: March 20, 2025**
-**Time: 18:00 AM**
-**Location: 開飯川食堂**
 
-## 2025 年終尾牙
-**Date: Jan 10, 2025**
-**Time: 18:00 AM**
-**Location: Roast 初熟成牛排**
+
+
+
+
 
 
 

@@ -60,7 +60,7 @@ const ProjectTools = () => {
       zhName: '智騰ERP',
       enName: 'WiseOdoo',
       type: 'erp',
-      path: 'http://192.168.30.170:8069/web/login?db=wisesemi'
+      path: 'http://172.16.0.209:8069/web/login?db=wisesemi'
     },
     {
       id: 8,

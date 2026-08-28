@@ -12,7 +12,7 @@
 | 2 | 智騰知識庫 | WiseWiki | <http://192.168.30.253:3540/zh-tw/home> |
 | 3 | 智騰AI知識庫 | WiseAIWiki | <http://192.168.30.170/wiki> |
 | 4 | 智騰版本控制 | OAHub | <http://192.168.30.253:3000/> |
-| 5 | 智騰ERP | WiseOdoo | <http://192.168.30.170:8069/web/login?db=wisesemi> |
+| 5 | 智騰ERP | WiseOdoo | <http://172.16.0.209:8069/web/login?db=wisesemi> |
 | 6 | 智騰簽核系統 | WiseForm | <http://172.16.0.209:8888> |
 | 7 | 智騰文管中心 | WiseDCC | <http://172.16.0.209:8006> |
 | 8 | 智騰文管中心 2 | WiseDCC 2 | <http://172.16.0.209:8008> |

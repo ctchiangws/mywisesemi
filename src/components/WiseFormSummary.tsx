@@ -1,16 +1,16 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { FileSignature, RefreshCw, Inbox } from 'lucide-react';
+import { CheckCircle2, FileSignature, RefreshCw, Inbox } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { bpmApi, BPM_BASE_URL, BPM_LOGIN_URL } from '@/services/bpmApi';
-import { BpmInboxItem, BpmSummary } from '@/types';
+import { BpmInboxItem, BpmRequestItem, BpmSummary } from '@/types';
 
 const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
 
-function SummarySection({
+function SummarySection<T extends { request_id: string }>({
   icon,
   title,
   data,
@@ -21,11 +21,11 @@ function SummarySection({
 }: {
   icon: React.ReactNode;
   title: string;
-  data: BpmSummary<BpmInboxItem> | undefined;
+  data: BpmSummary<T> | undefined;
   isLoading: boolean;
   isError: boolean;
   language: 'en' | 'zh';
-  renderItem: (item: BpmInboxItem) => React.ReactNode;
+  renderItem: (item: T) => React.ReactNode;
 }) {
   return (
     <div>
@@ -74,7 +74,7 @@ function SummarySection({
       {!isLoading && !isError && data?.authenticated && data.items.length > 0 && (
         <ul className="space-y-1">
           {data.items.map((item) => (
-            <li key={item.step_id}>
+            <li key={item.request_id}>
               {renderItem(item)}
             </li>
           ))}
@@ -94,8 +94,16 @@ const WiseFormSummary = () => {
     retry: false,
   });
 
+  const completedQuery = useQuery({
+    queryKey: ['bpm', 'recently-completed'],
+    queryFn: bpmApi.getRecentlyCompletedSummary,
+    refetchInterval: REFRESH_INTERVAL_MS,
+    retry: false,
+  });
+
   const handleRefresh = () => {
     inboxQuery.refetch();
+    completedQuery.refetch();
   };
 
   return (
@@ -118,10 +126,10 @@ const WiseFormSummary = () => {
             size="icon"
             className="h-7 w-7"
             onClick={handleRefresh}
-            disabled={inboxQuery.isLoading}
+            disabled={inboxQuery.isLoading || completedQuery.isLoading}
             title={language === 'zh' ? '手動更新' : 'Refresh'}
           >
-            <RefreshCw className={`h-4 w-4 ${inboxQuery.isFetching ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-4 w-4 ${(inboxQuery.isFetching || completedQuery.isFetching) ? 'animate-spin' : ''}`} />
           </Button>
         </div>
       </CardHeader>
@@ -149,6 +157,29 @@ const WiseFormSummary = () => {
             </a>
           )}
         />
+        <div className="mt-5 border-t pt-4">
+          <SummarySection<BpmRequestItem>
+            icon={<CheckCircle2 className="h-4 w-4 mr-1.5 text-green-600" />}
+            title={language === 'zh' ? '近期完成的表單' : 'Recently Completed'}
+            data={completedQuery.data}
+            isLoading={completedQuery.isLoading}
+            isError={completedQuery.isError}
+            language={language}
+            renderItem={(item) => (
+              <a
+                href={item.url.startsWith('http') ? item.url : `${BPM_BASE_URL}${item.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col p-2 rounded-md hover:bg-gray-100 transition-colors group"
+              >
+                <span className="text-sm text-gray-700 group-hover:text-wisesemi-dark">
+                  {item.form_name}{item.serial ? `（${item.serial}）` : ''}
+                </span>
+                <span className="text-xs text-gray-400">{item.status_display}</span>
+              </a>
+            )}
+          />
+        </div>
       </CardContent>
     </Card>
   );

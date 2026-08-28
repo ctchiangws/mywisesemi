@@ -29,4 +29,7 @@ export const bpmApi = {
 
   getMyRequestsSummary: (): Promise<BpmSummary<BpmRequestItem>> =>
     fetchBpmSummary<BpmRequestItem>('/my-requests/'),
+
+  getRecentlyCompletedSummary: (): Promise<BpmSummary<BpmRequestItem>> =>
+    fetchBpmSummary<BpmRequestItem>('/recently-completed/'),
 };

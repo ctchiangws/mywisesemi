@@ -65,6 +65,7 @@ export interface BpmRequestItem {
   status: string;
   status_display: string;
   created_at: string;
+  closed_at: string | null;
   url: string;
 }
 

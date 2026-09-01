@@ -46,10 +46,10 @@ const Index = () => {
               <TopCalendar />
             </div>
             <div>
-              <WiseFormSummary />
+              <DailyTools />
             </div>
             <div>
-              <DailyTools />
+              <WiseFormSummary />
             </div>
             <div className="flex-1">
               <ISODocuments />

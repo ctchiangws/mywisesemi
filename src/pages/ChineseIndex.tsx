@@ -43,8 +43,8 @@ const ChineseIndex = () => {
           {/* Right Column - Calendar, Daily Tools, ISO 9001, Life */}
           <div className="flex flex-col space-y-6">
             <TopCalendar />
-            <WiseFormSummary />
             <DailyTools />
+            <WiseFormSummary />
             <ISODocuments />
             <LifeInWisesemi />
           </div>

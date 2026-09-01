@@ -22,11 +22,12 @@ const Index = () => {
       
       <main className="flex-1 container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Left Column - Departments, Project Management & Shared Documents */}
+          {/* Left Column - Project Tools, Project Management, Shared Documents, Departments */}
           <div className="flex flex-col space-y-6">
-            <DepartmentsList />
+            <ProjectTools />
             <ProjectsList />
             <SharedDocuments />
+            <DepartmentsList />
           </div>
           
           {/* Middle Column - Announcements and Calendar */}
@@ -49,9 +50,6 @@ const Index = () => {
             </div>
             <div>
               <DailyTools />
-            </div>
-            <div>
-              <ProjectTools />
             </div>
             <div className="flex-1">
               <ISODocuments />

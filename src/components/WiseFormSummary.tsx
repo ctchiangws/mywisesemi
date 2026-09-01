@@ -158,7 +158,7 @@ const WiseFormSummary = () => {
           )}
         />
         <div className="mt-5 border-t pt-4">
-          <SummarySection<BpmRequestItem>
+          <SummarySection
             icon={<CheckCircle2 className="h-4 w-4 mr-1.5 text-green-600" />}
             title={language === 'zh' ? '近期完成的表單' : 'Recently Completed'}
             data={completedQuery.data}

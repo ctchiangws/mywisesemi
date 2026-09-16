@@ -5,9 +5,9 @@
 **Time: 7,8,9 Three days**
 **Location: 花蓮**
 
-## 2025 中秋餐敘
+## 2026 中秋餐敘
 **Date: Sep 23, 2026**
-**Time: 17:30**
+**Time: 18:00**
 **Location: 新橋**
 
 ## 中元普渡拜拜

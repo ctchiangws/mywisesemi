@@ -5,6 +5,11 @@
 **Time: 7,8,9 Three days**
 **Location: 花蓮**
 
+## 2026 教育訓練
+**Date: Oct 30, 2026**
+**Time: 10:00**
+**Location: 公司大會議室**
+
 ## 2026 中秋餐敘
 **Date: Sep 23, 2026**
 **Time: 18:00**

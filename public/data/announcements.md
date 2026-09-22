@@ -1,7 +1,12 @@
 
 # Company Announcements
-## Last update: 2026-05-21
+## Last update: 2026-09-22
 ---
+## HR 通知
+**Date: 2026-05-21**
+Ragic 更新組織表,請參考共享文件->公司組織圖。
+
+更新座位圖,請參考共享文件->員工座位圖。
 
 ## HR 通知
 **Date: 2026-05-21**

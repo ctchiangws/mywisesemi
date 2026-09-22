@@ -27,14 +27,14 @@
 | # | 名稱 | English | 連結 |
 |---|------|---------|------|
 | 1 | 午餐訂購 | Lunch Box Selection | <https://www.dinbendon.net/do/> |
-| 2 | 停用個人請假管理(Ragic) | Personal Leave Management | <https://ap11.ragic.com/sims/reg/login.jsp?a=wisesemi202401> |
+| 2 | 個人出勤管理 | Personal Attendance Management | <http://172.16.0.209:8069> |
 | 3 | 智騰郵件 | WiseSemi Mail | <https://172.16.0.253/wsmail> |
 | 4 | 智騰雲端硬碟 | WiseSemi OADrive | <https://172.16.0.253/oadrive> |
 | 5 | 智騰日曆 | WiseSemi Calendar | <https://172.16.0.253/wscalendar> |
 | 6 | 智騰聊天 | WiseSemi Chat | <https://172.16.0.253/wschat> |
 | 7 | 智騰筆記 | WiseSemi Note | <https://172.16.0.253/wsnote> |
 | 8 | 智騰 AI | WiseSemi AI | <http://wssrv006:8080> |
-| 9 | 個人出勤管理 | Personal Attendance Management | <http://172.16.0.209:8069> |
+| 9 | 停用個人請假管理(Ragic) | Personal Leave Management | <https://ap11.ragic.com/sims/reg/login.jsp?a=wisesemi202401> |
 
 ---
 

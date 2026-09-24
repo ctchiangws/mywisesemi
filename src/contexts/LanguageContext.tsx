@@ -61,6 +61,35 @@ const translations: Translations = {
     'en': 'Life in Wisesemi',
     'zh': 'Wisesemi生活',
   },
+  // Quality Policy banner
+  'quality.label': {
+    'en': 'Quality Policy',
+    'zh': '品質政策',
+  },
+  'quality.slogan': {
+    'en': 'Quality Built-in Trust',
+    'zh': 'Quality Built-in Trust',
+  },
+  'quality.pillar1': {
+    'en': 'Regulatory Compliance',
+    'zh': '符合法規',
+  },
+  'quality.pillar2': {
+    'en': 'Customer First',
+    'zh': '客戶優先',
+  },
+  'quality.pillar3': {
+    'en': 'Quality-Oriented',
+    'zh': '品質為本',
+  },
+  'quality.pillar4': {
+    'en': 'Continuous Improvement',
+    'zh': '持續改善',
+  },
+  'quality.learn_more': {
+    'en': 'View Full Quality Policy',
+    'zh': '查看完整品質政策',
+  },
   // Department translations
   'dept.ceo': {
     'en': 'CEO',

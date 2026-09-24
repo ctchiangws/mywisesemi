@@ -42,6 +42,9 @@ const DocumentPage = () => {
         } else if (docId === 'photo-gallery') {
           filePath = '/data/life/photo-gallery.md';
           documentTitle = 'Photo Gallery / 員工相簿';
+        } else if (docId === 'quality-policy') {
+          filePath = '/data/documents/quality-policy.md';
+          documentTitle = 'Quality Policy / 品質政策';
         } else {
           // For other documents, try the documents folder
           filePath = `/data/documents/${docId}.md`;

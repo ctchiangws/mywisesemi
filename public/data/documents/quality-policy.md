@@ -46,4 +46,4 @@ This Quality Policy applies to all WiseSemi employees and serves as the basis fo
 
 ## 相關文件 Related Documents
 
-- [ISO 9001 品質手冊 / Quality Manual](/projects/iso/quality-manual)
+- [📄 ISO 9001 品質手冊 / Quality Manual](/data/documents/QM-01A_品質手冊.pdf)

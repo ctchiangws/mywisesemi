@@ -1,9 +1,19 @@
 # Upcoming Events
 
+## 智騰半導體 員工座談會+11月慶生《辦公室成立紀念日》
+**Date: Nov 13, 2026**
+**Time: 15:00**
+**Location:  智騰半導體股份有限公司**
+
 ## 智騰半導體 員工旅遊
 **Date: Nov 7-9, 2026**
 **Time: ALL DAY**
 **Location: 花蓮**
+
+## 2026 教育訓練
+**Date: Oct 30, 2026**
+**Time: ALL DAY**
+**Location: 肯沃國際商務中心 享平方旗艦館3F A廳**
 
 ## 2026 中秋餐敘
 **Date: Sep 23, 2026**

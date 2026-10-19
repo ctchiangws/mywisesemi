@@ -6,8 +6,8 @@
 **Location:  智騰半導體股份有限公司**
 
 ## 智騰半導體 員工旅遊
-**Date: Nov 7-9, 2026**
-**Time: ALL DAY**
+**Date: Nov 7, 2026**
+**Time: 7,8,9 Three days**
 **Location: 花蓮**
 
 ## 2026 教育訓練

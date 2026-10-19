@@ -60,14 +60,14 @@ const ProjectTools = () => {
       zhName: '智騰ERP',
       enName: 'WiseOdoo',
       type: 'erp',
-      path: 'http://192.168.30.170:8069/web/login?db=wisesemi'
+      path: 'http://172.16.0.209:8069/web/login?db=wisesemi'
     },
     {
       id: 8,
-      zhName: '智騰表單中心',
+      zhName: '智騰簽核系統',
       enName: 'WiseForm',
       type: 'project',
-      path: 'http://172.16.0.209:8080/jw'
+      path: 'http://172.16.0.209:8888'
     },
     {
       id: 7,
@@ -96,7 +96,15 @@ const ProjectTools = () => {
       enName: 'Wisen8n',
       type: 'workflow',
       path: 'https://oan8n.wisesemi.com'
+    },
+    {
+      id: 12,
+      zhName: '智騰IT中心',
+      enName: 'WiseIT',
+      type: 'project',
+      path: 'http://172.16.0.209:8010'
     }
+
   ];
 
   return (

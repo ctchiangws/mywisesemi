@@ -10,24 +10,28 @@ import TopCalendar from '@/components/TopCalendar';
 import ISODocuments from '@/components/ISODocuments';
 import DailyTools from '@/components/DailyTools';
 import ProjectTools from '@/components/ProjectTools';
+import WiseFormSummary from '@/components/WiseFormSummary';
+import QualityPolicy from '@/components/QualityPolicy';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index = () => {
   const { t } = useLanguage();
-  
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
-      
+
       <main className="flex-1 container mx-auto px-4 py-6">
+        <QualityPolicy />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Left Column - Departments, Project Management & Shared Documents */}
+          {/* Left Column - Daily Tools, Project Tools, Project Management, Departments */}
           <div className="flex flex-col space-y-6">
-            <DepartmentsList />
+            <DailyTools />
+            <ProjectTools />
             <ProjectsList />
-            <SharedDocuments />
+            <DepartmentsList />
           </div>
-          
+
           {/* Middle Column - Announcements and Calendar */}
           <div className="flex flex-col space-y-6">
             <div className="flex-1">
@@ -37,17 +41,17 @@ const Index = () => {
               <EventCalendar />
             </div>
           </div>
-          
-          {/* Right Column - Calendar, Daily Tools and ISO 9001 */}
+
+          {/* Right Column - Calendar, WiseForm, Shared Documents, ISO 9001 */}
           <div className="flex flex-col space-y-6">
             <div>
               <TopCalendar />
             </div>
             <div>
-              <DailyTools />
+              <WiseFormSummary />
             </div>
             <div>
-              <ProjectTools />
+              <SharedDocuments />
             </div>
             <div className="flex-1">
               <ISODocuments />

@@ -40,10 +40,10 @@ const DailyTools = () => {
       path: 'https://www.dinbendon.net/do/'
     },
     {
-      id: 2,
-      name: language === 'zh' ? '個人請假管理' : 'Personal Leave Management',
+      id: 10,
+      name: language === 'zh' ? '個人出勤管理' : 'Personal Attendance Management',
       type: 'leave',
-      path: 'https://ap11.ragic.com/sims/reg/login.jsp?a=wisesemi202401'
+      path: 'http://172.16.0.209:8069'
     },
     {
       id: 3,
@@ -80,6 +80,12 @@ const DailyTools = () => {
       name: language === 'zh' ? '智騰 AI' : 'WiseSemi AI',
       type: 'ai',
       path: 'http://wssrv006:8080'
+    },
+    {
+      id: 2,
+      name: language === 'zh' ? '停用個人請假管理(Ragic)' : 'Personal Leave Management',
+      type: 'leave',
+      path: 'https://ap11.ragic.com/sims/reg/login.jsp?a=wisesemi202401'
     }
   ];
 

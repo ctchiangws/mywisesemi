@@ -1,7 +1,12 @@
 
 # Company Announcements
-## Last update: 2026-05-21
+## Last update: 2026-09-22
 ---
+## HR 通知
+**Date: 2026-09-22**
+停用Ragic 請假系統。
+
+請改用Oddo 中新出勤系統。
 
 ## HR 通知
 **Date: 2026-05-21**

@@ -11,24 +11,27 @@ import ISODocuments from '@/components/ISODocuments';
 import LifeInWisesemi from '@/components/LifeInWisesemi';
 import DailyTools from '@/components/DailyTools';
 import ProjectTools from '@/components/ProjectTools';
+import WiseFormSummary from '@/components/WiseFormSummary';
+import QualityPolicy from '@/components/QualityPolicy';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ChineseIndex = () => {
   const { t } = useLanguage();
-  
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
-      
+
       <main className="flex-1 container mx-auto px-4 py-6">
+        <QualityPolicy />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Left Column - Departments, Shared Documents, Project Tools */}
+          {/* Left Column - Daily Tools, Project Tools, Departments */}
           <div className="flex flex-col space-y-6">
-            <DepartmentsList />
-            <SharedDocuments />
+            <DailyTools />
             <ProjectTools />
+            <DepartmentsList />
           </div>
-          
+
           {/* Middle Column - Announcements and Calendar */}
           <div className="flex flex-col space-y-6">
             <div className="flex-1">
@@ -38,11 +41,12 @@ const ChineseIndex = () => {
               <EventCalendar />
             </div>
           </div>
-          
-          {/* Right Column - Calendar, Daily Tools, ISO 9001, Life */}
+
+          {/* Right Column - Calendar, WiseForm, Shared Documents, ISO 9001, Life */}
           <div className="flex flex-col space-y-6">
             <TopCalendar />
-            <DailyTools />
+            <WiseFormSummary />
+            <SharedDocuments />
             <ISODocuments />
             <LifeInWisesemi />
           </div>
